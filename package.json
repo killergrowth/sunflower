@@ -1,0 +1,8 @@
+{
+  "name": "sunflower",
+  "version": "1.0.0",
+  "description": "Sunflower Plumbing - Main Site",
+  "scripts": {
+    "build": "node build.js"
+  }
+}

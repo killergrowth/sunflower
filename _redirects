@@ -1,0 +1,7 @@
+# Sunflower Plumbing -- _redirects
+# Per SOP: never remove entries, only add. Use 301 for permanent redirects.
+
+# Old WP URL patterns -> new structure (add as needed during DNS cutover)
+/about-us/    /about/    301
+/contact-us/  /contact/  301
+/services/    /plumbing/ 301
