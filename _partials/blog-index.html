@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{page_meta}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+  {{base_head}}
+  <style>
+    /* Override kg-blog-card inline styles to match site card design */
+    .kg-blog-index { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    .blog-grid .kg-blog-card {
+      display: block !important;
+      border-top: 3px solid var(--divider, #e0e0e0) !important;
+      border-bottom: none !important;
+      padding: 24px 0 0 !important;
+      gap: 0 !important;
+      transition: border-color 0.2s;
+    }
+    .blog-grid .kg-blog-card:hover { border-top-color: var(--yellow, #f5c400) !important; }
+    .blog-grid .kg-blog-card > a img {
+      width: 100% !important;
+      height: 200px !important;
+      object-fit: cover !important;
+      border-radius: 4px !important;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .blog-grid .kg-blog-card-body { flex: none !important; }
+    .blog-grid .kg-blog-card-body h2 {
+      font-family: 'Barlow Condensed', 'DM Sans', sans-serif !important;
+      font-size: 18px !important;
+      letter-spacing: 0 !important;
+      margin-bottom: 10px !important;
+      transition: color 0.2s;
+    }
+    .blog-grid .kg-blog-card:hover h2 a { color: var(--yellow, #f5c400) !important; }
+    .blog-grid .kg-blog-card-body > div { /* date */
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 12px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 2px !important;
+      color: var(--subtle, #888) !important;
+      margin-bottom: 10px !important;
+    }
+    .blog-grid .kg-blog-card-body > p { font-size: 14px !important; margin-bottom: 14px !important; }
+    .kg-blog-pagination { display: flex; justify-content: center; gap: 12px; margin-top: 48px; flex-wrap: wrap; }
+    .kg-blog-pagination a, .kg-blog-pagination span {
+      padding: 8px 16px; border: 1px solid #ddd; border-radius: 4px;
+      font-size: 14px; color: inherit; text-decoration: none;
+    }
+    .kg-blog-pagination a:hover { background: var(--yellow, #f5c400); border-color: var(--yellow, #f5c400); }
+    .kg-blog-pagination .current { background: var(--yellow, #f5c400); border-color: var(--yellow, #f5c400); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+{{header}}
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <span>Blog</span>
+    </nav>
+    <h1>The Sunflower Blog</h1>
+    <p class="lead">Expert tips, home maintenance advice, and answers to common plumbing and septic questions. Stay ahead of costly repairs.</p>
+  </div>
+</section>
+
+<section class="blog-section">
+  <div class="container">
+    <div class="blog-grid kg-blog-index">
+      {{posts_html}}
+    </div>
+    {{pagination_html}}
+  </div>
+</section>
+
+<section class="call-band">
+  <div class="container">
+    <h2>Have a Plumbing <em>Question?</em></h2>
+    <p>Don&rsquo;t wait for a blog post &mdash; call us directly. We&rsquo;re happy to help over the phone.</p>
+    <div class="call-band-ctas">
+      <a href="tel:+13163336326" class="btn">
+        <span>Call (316) 333-6326</span>
+        <span class="btn-icon"><i class="fas fa-phone"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{{footer}}
+
+<script src="/js/main.js"></script>
+</body>
+</html>
