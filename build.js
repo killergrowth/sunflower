@@ -4,6 +4,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { buildBlog } = require('C:\\Users\\KillerGrowth\\.openclaw\\workspace\\tools\\kg-site-builder\\lib\\blog-build');
 
 const ROOT = __dirname;
 const DIST = path.join(ROOT, 'dist');
@@ -114,3 +115,16 @@ if (problems > 0) {
   process.exit(1);
 }
 console.log('\nBuild OK. Deploy ./dist');
+
+// Blog build step — runs if blogEnabled in sites.json
+try {
+  const sitesPath = 'C:\\Users\\KillerGrowth\\.openclaw\\workspace\\References\\sites.json';
+  const sites = JSON.parse(fs.readFileSync(sitesPath, 'utf8').replace(/^\uFEFF/, ''));
+  const site  = sites.sites.find(s => s.id === 'sunflower');
+  if (site && site.blogEnabled) {
+    const postsPerPage = site.blogPostsPerPage || 10;
+    buildBlog({ srcDir: ROOT, distDir: DIST, siteId: 'sunflower', postsPerPage, domain: 'sunflowerplumbing.com', siteName: 'Sunflower Plumbing' });
+  }
+} catch (err) {
+  console.warn('[Blog] Build step skipped:', err.message);
+}
