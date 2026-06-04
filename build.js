@@ -52,6 +52,7 @@ const pages = [
   ['about/index.html',               'about/index.html'],
   ['plumbing/index.html',            'plumbing/index.html'],
   ['septic/index.html',              'septic/index.html'],
+  ['excavation/index.html',          'excavation/index.html'],
   ['areas-served/index.html',        'areas-served/index.html'],
   ['financing/index.html',           'financing/index.html'],
   ['blog/index.html',                'blog/index.html'],
