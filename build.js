@@ -2,6 +2,10 @@
 // Assembles dist/ from source HTML + _partials.
 // Per SOP-WEB-BUILD: strips UTF-8 BOMs, writes UTF-8 without BOM.
 
+const { generateSitemap } = require('C:\\\\Users\\\\KillerGrowth\\\\.openclaw\\\\workspace\\\\tools\\\\kg-site-builder\\\\lib\\\\gen-sitemap');
+const { injectScripts, loadSiteScripts } = require('C:\\\\Users\\\\KillerGrowth\\\\.openclaw\\\\workspace\\\\tools\\\\kg-site-builder\\\\lib\\\\inject-scripts');
+const SITE_DOMAIN = 'sunflowerplumbing.com';
+const SITE_ID     = 'sunflower';
 const fs = require('fs');
 const path = require('path');
 const { buildBlog } = require('C:\\Users\\KillerGrowth\\.openclaw\\workspace\\tools\\kg-site-builder\\lib\\blog-build');
@@ -57,8 +61,7 @@ const pages = [
   ['financing/index.html',           'financing/index.html'],
   ['blog/index.html',                'blog/index.html'],
   ['contact/index.html',             'contact/index.html'],
-  ['404.html',                       '404.html'],
-];
+  ['404.html',                       '404.html']];
 
 for (const [src, dest] of pages) {
   const srcPath = path.join(ROOT, src);
@@ -69,6 +72,7 @@ for (const [src, dest] of pages) {
   }
   let html = read(srcPath);
   html = injectPartials(html, header, footer);
+  html = injectScripts(html, loadSiteScripts(SITE_ID));
   write(destPath, html);
   console.log(`Built: ${dest}`);
 }
@@ -79,7 +83,7 @@ copyDir(path.join(ROOT, 'js'),     path.join(DIST, 'js'));
 copyDir(path.join(ROOT, 'images'), path.join(DIST, 'images'));
 
 // 5. Copy required deploy-root files (per SOP)
-const rootFiles = ['robots.txt', 'sitemap.xml', '_worker.js', '_routes.json', '_redirects'];
+const rootFiles = ['robots.txt', '_worker.js', '_routes.json', '_redirects'];
 for (const f of rootFiles) {
   const src = path.join(ROOT, f);
   if (fs.existsSync(src)) {
@@ -95,8 +99,7 @@ const filesToCheck = [
   path.join(DIST, 'about', 'index.html'),
   path.join(DIST, 'contact', 'index.html'),
   path.join(DIST, 'css', 'styles.css'),
-  path.join(DIST, 'js', 'main.js'),
-];
+  path.join(DIST, 'js', 'main.js')];
 let problems = 0;
 for (const f of filesToCheck) {
   if (!fs.existsSync(f)) { console.warn(`CHECK: ${f} not found`); continue; }
@@ -117,7 +120,7 @@ if (problems > 0) {
 }
 console.log('\nBuild OK. Deploy ./dist');
 
-// Blog build step — runs if blogEnabled in sites.json
+// Blog build step â€” runs if blogEnabled in sites.json
 try {
   const sitesPath = 'C:\\Users\\KillerGrowth\\.openclaw\\workspace\\References\\sites.json';
   const sites = JSON.parse(fs.readFileSync(sitesPath, 'utf8').replace(/^\uFEFF/, ''));
@@ -129,3 +132,6 @@ try {
 } catch (err) {
   console.warn('[Blog] Build step skipped:', err.message);
 }
+
+// Generate sitemap from actual dist/ contents
+generateSitemap({ distDir: DIST, siteRoot: ROOT, domain: SITE_DOMAIN });
