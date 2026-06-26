@@ -133,5 +133,30 @@ try {
   console.warn('[Blog] Build step skipped:', err.message);
 }
 
+// 7. Generate city pages
+try {
+  const cities = require(path.join(ROOT, '_data', 'cities.js'));
+  const cityTemplate = read(path.join(ROOT, '_partials', 'city-page.html'));
+  for (const city of cities) {
+    let html = cityTemplate
+      .replace(/{{CITY_NAME}}/g, city.name)
+      .replace(/{{CITY_SLUG}}/g, city.slug)
+      .replace(/{{CITY_COUNTY}}/g, city.county)
+      .replace(/{{META_DESC}}/g, city.metaDesc)
+      .replace(/{{HERO_SUB}}/g, city.heroSub)
+      .replace(/{{INTRO}}/g, city.intro)
+      .replace(/{{LOCAL_DETAIL}}/g, city.localDetail)
+      .replace(/{{CALLOUT}}/g, city.callout);
+    html = injectPartials(html, header, footer);
+    html = injectScripts(html, loadSiteScripts(SITE_ID));
+    const destPath = path.join(DIST, 'areas-served', city.slug, 'index.html');
+    write(destPath, html);
+    console.log(`Built: areas-served/${city.slug}/index.html`);
+  }
+  console.log(`[Cities] Built ${cities.length} city pages.`);
+} catch (err) {
+  console.warn('[Cities] Skipped:', err.message);
+}
+
 // Generate sitemap from actual dist/ contents
 generateSitemap({ distDir: DIST, siteRoot: ROOT, domain: SITE_DOMAIN });

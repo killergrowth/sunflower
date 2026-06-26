@@ -593,15 +593,19 @@ h1, h2, h3, h4, h5 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
-  align-items: center;
+  align-items: start;
 }
 .about-image {
   position: relative;
+  min-width: 0;
+}
+.about-content {
+  min-width: 0;
 }
 .about-image img {
   width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 .about-image-accent {
   position: absolute;
@@ -669,7 +673,10 @@ h1, h2, h3, h4, h5 {
   border-top: 3px solid var(--yellow);
   padding-top: 28px;
   transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
 }
+.hub-service-item p { flex: 1; }
 .hub-service-item:hover { transform: translateY(-4px); }
 .hub-service-item h3 {
   font-size: 19px;
