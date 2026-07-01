@@ -42,6 +42,25 @@ function injectPartials(html, header, footer) {
     .replace('<!-- FOOTER -->', footer);
 }
 
+// Reviews data (from Google Places API cache)
+const reviewsFile = path.join(ROOT, 'data', 'reviews.json');
+const reviewData = fs.existsSync(reviewsFile)
+  ? JSON.parse(fs.readFileSync(reviewsFile, 'utf8'))
+  : { rating: 4.8, userRatingCount: 0, reviews: [] };
+
+const ratingStr = reviewData.rating !== null ? Number(reviewData.rating).toFixed(1) : '4.8';
+const countStr = reviewData.userRatingCount ? reviewData.userRatingCount.toString() : '0';
+
+const reviewCards = (reviewData.reviews || []).map(r => {
+  const esc = t => (t || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const initial = (r.author || 'G').charAt(0).toUpperCase();
+  return `<div class="review-card">
+  <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <p class="review-text">&ldquo;${esc(r.text)}&rdquo;</p>
+  <div class="review-author">${esc(r.author)} &bull; <span style="font-weight:400;opacity:0.75;">${esc(r.relativeTime)}</span></div>
+</div>`;
+}).join('\n');
+
 // 1. Wipe dist/
 if (fs.existsSync(DIST)) fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(DIST);
@@ -72,6 +91,15 @@ for (const [src, dest] of pages) {
   }
   let html = read(srcPath);
   html = injectPartials(html, header, footer);
+  // Inject live review data into homepage
+  if (src === 'index.html') {
+    html = html
+      .replace(/<!-- RATING_VALUE -->/g, ratingStr)
+      .replace(/<!-- REVIEW_COUNT -->/g, countStr)
+      .replace(/<!-- SCHEMA_RATING -->/g, ratingStr)
+      .replace(/<!-- SCHEMA_COUNT -->/g, countStr)
+      .replace('<!-- REVIEW_CARDS -->', reviewCards);
+  }
   html = injectScripts(html, loadSiteScripts(SITE_ID));
   write(destPath, html);
   console.log(`Built: ${dest}`);

@@ -1,0 +1,58 @@
+{
+  "clientSlug": "sunflower",
+  "clientName": "Sunflower Plumbing",
+  "domain": "sunflower-plumbing.pages.dev",
+  "runDate": "2026-06-30",
+  "type": "baseline",
+  "checksRun": 12,
+  "checksPassed": 12,
+  "checksFailed": 0,
+  "openCritical": 0,
+  "openWarnings": 0,
+  "pagesIndexed": 0,
+  "onpageScore": null,
+  "domainChecks": {
+    "sitemap": true,
+    "robotsTxt": true,
+    "ssl": true,
+    "httpsRedirect": false
+  },
+  "pageHealth": {
+    "broken4xx": 0,
+    "broken5xx": 0,
+    "brokenLinks": 0,
+    "duplicateTitles": 0,
+    "duplicateContent": 0,
+    "missingTitles": 0,
+    "missingDescriptions": 0,
+    "missingH1": 0,
+    "missingAltText": 0,
+    "renderBlocking": 0,
+    "slowPages": 0,
+    "linksToRedirects": 0
+  },
+  "pagespeed": {
+    "mobile": {
+      "performance": 63,
+      "seo": null,
+      "accessibility": null,
+      "bestPractices": null,
+      "lcp": "6.7 s",
+      "cls": "0.122",
+      "fcp": "4.1 s",
+      "tbt": "0 ms"
+    },
+    "desktop": {
+      "performance": 96,
+      "seo": null,
+      "accessibility": null,
+      "bestPractices": null,
+      "lcp": "1.3 s",
+      "cls": "0.005",
+      "fcp": "0.9 s",
+      "tbt": "0 ms"
+    }
+  },
+  "issuesFlagged": [],
+  "notes": "Baseline audit — Month 1 one-time run"
+}

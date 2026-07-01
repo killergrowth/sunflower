@@ -4,5 +4,8 @@
   "description": "Sunflower Plumbing - Main Site",
   "scripts": {
     "build": "node build.js"
+  },
+  "devDependencies": {
+    "libsodium-wrappers": "^0.8.4"
   }
 }
