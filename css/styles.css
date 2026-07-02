@@ -307,7 +307,7 @@ h1, h2, h3, h4, h5 {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(18,19,21,0.65) 0%, rgba(18,19,21,0.2) 60%, transparent 100%);
+  background: linear-gradient(to right, rgba(18,19,21,0.75) 0%, rgba(18,19,21,0.3) 60%, transparent 100%);
   z-index: 1;
 }
 .hero-inner {
