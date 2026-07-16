@@ -1,4 +1,4 @@
-// build.js -- Sunflower Plumbing Main Site
+﻿// build.js -- Sunflower Plumbing Main Site
 // Assembles dist/ from source HTML + _partials.
 // Per SOP-WEB-BUILD: strips UTF-8 BOMs, writes UTF-8 without BOM.
 
@@ -200,6 +200,70 @@ try {
   console.log(`[Cities] Built ${cities.length} city pages.`);
 } catch (err) {
   console.warn('[Cities] Skipped:', err.message);
+}
+
+// 8. Generate service+location pages (19 services x 24 cities = 456 pages)
+try {
+  const services   = require(path.join(ROOT, '_data', 'services.js'));
+  const citiesData = require(path.join(ROOT, '_data', 'cities.js'));
+  const slTemplate = read(path.join(ROOT, '_partials', 'service-location-page.html'));
+
+  let slCount = 0;
+  for (const svc of services) {
+    for (const city of citiesData) {
+      const urlPath         = `${svc.urlPrefix}/${city.slug}-ks`;
+      const serviceNameFull = svc.displayName;
+      const cityNameFull    = city.name;
+      const countyName      = city.county;
+      const pageTitle       = `${svc.shortName} in ${cityNameFull}, KS | Sunflower Plumbing`;
+      const metaDesc        = `${svc.shortName} in ${cityNameFull}, KS. ${svc.tagline}. Licensed, insured, locally owned in Butler County. Call (316) 333-6326.`;
+
+      const replaceTokens = (str) => (str || '')
+        .replace(/\{\{CITY_NAME\}\}/g,   cityNameFull)
+        .replace(/\{\{COUNTY_NAME\}\}/g, countyName);
+
+      let breadcrumbMiddleJson = '';
+      let breadcrumbHtmlMiddle = '';
+      let breadcrumbPos = '3';
+      if (!svc.isTopLevel) {
+        breadcrumbMiddleJson = `{ "@type": "ListItem", "position": 3, "name": "${svc.hubLabel} — ${svc.shortName}", "item": "https://www.sunflowerplumbing.com/${svc.urlPrefix}/" },`;
+        breadcrumbHtmlMiddle = `<span>/</span><a href="/${svc.urlPrefix}/">${svc.shortName}</a>`;
+        breadcrumbPos = '4';
+      }
+
+      let html = slTemplate
+        .replace(/\{\{PAGE_TITLE\}\}/g,              pageTitle)
+        .replace(/\{\{META_DESC\}\}/g,               metaDesc)
+        .replace(/\{\{URL_PATH\}\}/g,                urlPath)
+        .replace(/\{\{SERVICE_NAME\}\}/g,            serviceNameFull)
+        .replace(/\{\{SERVICE_SHORT\}\}/g,           svc.shortName)
+        .replace(/\{\{SERVICE_SHORT_LOWER\}\}/g,     svc.shortName.toLowerCase())
+        .replace(/\{\{HUB_LABEL\}\}/g,              svc.hubLabel)
+        .replace(/\{\{HUB_SLUG\}\}/g,               svc.hubSlug)
+        .replace(/\{\{BREADCRUMB_MIDDLE\}\}/g,       breadcrumbMiddleJson)
+        .replace(/\{\{BREADCRUMB_HTML_MIDDLE\}\}/g,  breadcrumbHtmlMiddle)
+        .replace(/\{\{BREADCRUMB_POS\}\}/g,          breadcrumbPos)
+        .replace(/\{\{CITY_NAME\}\}/g,               cityNameFull)
+        .replace(/\{\{COUNTY_NAME\}\}/g,             countyName)
+        .replace(/\{\{CITY_SLUG\}\}/g,               city.slug)
+        .replace(/\{\{CITY_INTRO\}\}/g,              city.intro || '')
+        .replace(/\{\{CITY_LOCAL_DETAIL\}\}/g,       city.localDetail || '')
+        .replace(/\{\{CITY_CALLOUT\}\}/g,            city.callout || '')
+        .replace(/\{\{PITCH\}\}/g,                   replaceTokens(svc.pitch))
+        .replace(/\{\{SERVICE_BODY\}\}/g,            replaceTokens(svc.serviceBody))
+        .replace(/\{\{DIFFERENTIATOR\}\}/g,          replaceTokens(svc.differentiator))
+        .replace(/\{\{URGENCY_NOTE\}\}/g,            replaceTokens(svc.urgencyNote))
+        .replace(/\{\{CTA\}\}/g,                     svc.cta);
+
+      html = injectPartials(html, header, footer);
+      html = injectScripts(html, loadSiteScripts(SITE_ID));
+      write(path.join(DIST, urlPath, 'index.html'), html);
+      slCount++;
+    }
+  }
+  console.log(`[Service+Location] Built ${slCount} pages (${services.length} services x ${citiesData.length} cities).`);
+} catch (err) {
+  console.error('[Service+Location] FAILED:', err.message, err.stack);
 }
 
 // Generate sitemap from actual dist/ contents

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -85,6 +85,17 @@
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+  <style>
+    @media (max-width: 760px) {
+      .about-section-inner { padding: 60px 0 !important; }
+      .why-choose-section { padding: 60px 0 !important; }
+      .about-grid { gap: 32px !important; }
+      .about-image img { width: 100%; height: auto; }
+      .why-choose-grid { grid-template-columns: 1fr !important; }
+    }
+    .nap-section a { transition: opacity 0.2s; }
+    .nap-section a:hover { opacity: 0.75; }
+  </style>
 </head>
 <body>
 
@@ -105,7 +116,7 @@
 </section>
 
 <!-- ABOUT CONTENT -->
-<section style="padding:100px 0; background:var(--white);">
+<section class="about-section-inner" style="padding:100px 0; background:var(--white);">
   <div class="container">
     <div class="about-grid">
       <div class="about-image">
@@ -134,14 +145,14 @@
 </section>
 
 <!-- WHY CHOOSE US -->
-<section style="padding:100px 0;background:var(--bg-cream);">
+<section class="why-choose-section" style="padding:100px 0;background:var(--bg-cream);">
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">Why Choose Us</span>
       <h2>The Sunflower <em>Difference</em></h2>
       <p>We&rsquo;re not just fixing pipes &mdash; we&rsquo;re delivering a better experience from start to finish.</p>
     </div>
-    <div class="services-grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="services-grid why-choose-grid">
       <div class="service-card">
         <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
         <h3>Expertise &amp; Knowledge</h3>
@@ -197,7 +208,7 @@
 
       <div class="faq-item">
         <h3>Where is Sunflower Plumbing located?</h3>
-        <p>Sunflower Plumbing &amp; Excavation is located at 3910 W. Central Ave, El Dorado, KS 67042. We serve all of Butler County ”” including Augusta, Andover, Rose Hill, Benton, Towanda, Leon, and Potwin ”” and surrounding communities.</p>
+        <p>Sunflower Plumbing &amp; Excavation is located at 3910 W. Central Ave, El Dorado, KS 67042. We serve all of Butler County &mdash; including Augusta, Andover, Rose Hill, Benton, Towanda, Leon, and Potwin &mdash; and surrounding communities.</p>
       </div>
 
       <div class="faq-item">
@@ -210,11 +221,13 @@
 </section>
 
 <!-- NAP -->
-<section style="padding:50px 0;background:var(--dark);">
-  <div class="container" style="text-align:center;color:var(--white);">
-    <p style="margin:0;font-size:16px;opacity:0.85;">
-      <strong>Sunflower Plumbing &amp; Excavation</strong> &nbsp;|&nbsp; 3910 W. Central Ave, El Dorado, KS 67042 &nbsp;|&nbsp; <a href="tel:+13163336326" style="color:var(--yellow);">(316) 333-6326</a>
-    </p>
+<section class="nap-section" style="padding:32px 0;background:var(--black);">
+  <div class="container" style="text-align:center;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:16px;">
+      <a href="/contact/" style="color:var(--white);font-weight:700;font-size:17px;">Sunflower Plumbing &amp; Excavation</a>
+      <a href="https://maps.google.com/?q=3910+W+Central+Ave,+El+Dorado,+KS+67042" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.75);">3910 W. Central Ave, El Dorado, KS 67042</a>
+      <a href="tel:+13163336326" style="color:var(--yellow);font-weight:600;white-space:nowrap;">(316) 333-6326</a>
+    </div>
   </div>
 </section>
 
@@ -242,5 +255,3 @@
 <!-- TRACKING: GA4/GTM injected by Leo post-build -->
 </body>
 </html>
-
-
