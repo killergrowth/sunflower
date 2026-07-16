@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,24 +7,94 @@
   <meta name="description" content="{{META_DESC}}">
   <link rel="canonical" href="https://www.sunflowerplumbing.com/areas-served/{{CITY_SLUG}}/">
   <meta name="robots" content="noindex, nofollow">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Plumber",
-    "name": "Sunflower Plumbing &amp; Excavation",
-    "url": "https://www.sunflowerplumbing.com",
-    "telephone": "(316) 333-6326",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "3910 W. Central Ave",
-      "addressLocality": "El Dorado",
-      "addressRegion": "KS",
-      "postalCode": "67042",
-      "addressCountry": "US"
-    },
-    "areaServed": "{{CITY_NAME}}, {{CITY_COUNTY}}, Kansas"
+    "@graph": [
+      {
+        "@type": "Plumber",
+        "@id": "https://www.sunflowerplumbing.com/#business",
+        "name": "Sunflower Plumbing & Excavation",
+        "url": "https://www.sunflowerplumbing.com",
+        "telephone": "+13163336326",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "3910 W. Central Ave",
+          "addressLocality": "El Dorado",
+          "addressRegion": "KS",
+          "postalCode": "67042",
+          "addressCountry": "US"
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "{{CITY_NAME}}",
+          "addressRegion": "KS"
+        },
+        "description": "Licensed plumbing, septic, and excavation services in {{CITY_NAME}}, KS and {{CITY_COUNTY}}.",
+        "sameAs": [
+          "https://maps.google.com/maps?cid=12903829971720831704",
+          "https://www.facebook.com/sunflowerplumbing/",
+          "https://www.bbb.org/us/ks/el-dorado/profile/plumber/sunflower-plumbing-0714-1000073326"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.sunflowerplumbing.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Areas Served", "item": "https://www.sunflowerplumbing.com/areas-served/" },
+          { "@type": "ListItem", "position": 3, "name": "{{CITY_NAME}}", "item": "https://www.sunflowerplumbing.com/areas-served/{{CITY_SLUG}}/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does Sunflower Plumbing serve {{CITY_NAME}}, KS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Sunflower Plumbing & Excavation serves {{CITY_NAME}}, KS for plumbing repairs, water heater service, drain cleaning, septic work, and excavation. We're based in El Dorado and serve {{CITY_COUNTY}} and surrounding communities."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does a plumber cost in {{CITY_NAME}}, KS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most plumbing repairs in {{CITY_NAME}} run $150-$500 depending on the job. Water heater replacements typically range $800-$1,800 installed. Sunflower Plumbing provides upfront quotes before any work begins — call (316) 333-6326 for a free estimate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Sunflower Plumbing available for emergency plumbing in {{CITY_NAME}}?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Sunflower Plumbing offers 24/7 emergency plumbing service in {{CITY_NAME}} and throughout {{CITY_COUNTY}}. Call (316) 333-6326 any time for burst pipes, sewage backups, or any plumbing emergency."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What plumbing services does Sunflower Plumbing offer in {{CITY_NAME}}?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sunflower Plumbing & Excavation offers water heater repair and installation, drain cleaning, leak detection, gas lines, sewer line repair, kitchen and bathroom plumbing, septic system service, and excavation in {{CITY_NAME}}, KS."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Sunflower Plumbing licensed and insured in Kansas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Sunflower Plumbing & Excavation is fully licensed and insured to perform plumbing and septic work in Kansas, including {{CITY_NAME}} and {{CITY_COUNTY}}."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,7 +116,7 @@
       <span>/</span>
       <span>{{CITY_NAME}}</span>
     </nav>
-    <h1>{{CITY_NAME}}, KS</h1>
+    <h1>Plumber in {{CITY_NAME}}, KS &mdash; Sunflower Plumbing &amp; Excavation</h1>
     <p class="lead">{{HERO_SUB}}</p>
   </div>
 </section>
@@ -55,7 +125,7 @@
   <div class="container">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
       <div>
-        <span class="eyebrow">Serving {{CITY_NAME}}</span>
+        <span class="eyebrow">Serving {{CITY_NAME}}, {{CITY_COUNTY}}</span>
         <h2>Plumbing &amp; Septic Services<br><em>in {{CITY_NAME}}, KS</em></h2>
         <p style="font-size:17px;margin-bottom:20px;">{{INTRO}}</p>
         <p style="font-size:17px;margin-bottom:32px;">{{LOCAL_DETAIL}}</p>
@@ -76,7 +146,7 @@
           <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;margin-top:8px;">
             <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;color:rgba(255,255,255,0.8);font-size:15px;"><i class="fas fa-phone" style="color:var(--yellow);"></i><a href="tel:+13163336326" style="color:rgba(255,255,255,0.8);">(316) 333-6326</a></div>
             <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;color:rgba(255,255,255,0.8);font-size:15px;"><i class="fas fa-clock" style="color:var(--yellow);"></i><span>24/7 Emergency Service</span></div>
-            <div style="display:flex;gap:12px;align-items:center;color:rgba(255,255,255,0.8);font-size:15px;"><i class="fas fa-star" style="color:var(--yellow);"></i><span>4.8 Stars &mdash; 417 Reviews</span></div>
+            <div style="display:flex;gap:12px;align-items:center;color:rgba(255,255,255,0.8);font-size:15px;"><i class="fas fa-certificate" style="color:var(--yellow);"></i><span>Licensed &amp; Insured in Kansas</span></div>
           </div>
         </div>
         <a href="/contact/" class="btn btn--white" style="width:100%;justify-content:space-between;">
@@ -92,53 +162,100 @@
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">Services Available in {{CITY_NAME}}</span>
-      <h2>What We Do in<br><em>{{CITY_NAME}} &amp; Surrounding Areas</em></h2>
+      <h2>What We Do in {{CITY_NAME}}<br><em>&amp; Surrounding Areas</em></h2>
     </div>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon"><i class="fas fa-wrench"></i></div>
-        <h3>Plumbing Repairs</h3>
-        <p>Leaks, clogs, broken pipes, and fixture repairs handled quickly and correctly the first time.</p>
-        <a href="/plumbing/" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+        <h3>Plumbing Repairs in {{CITY_NAME}}</h3>
+        <p>Leaks, clogs, broken pipes, and fixture repairs handled quickly and correctly the first time. Upfront quote before any work begins.</p>
+        <a href="/plumbing/" class="service-link">See all plumbing services <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="service-card">
         <div class="service-icon"><i class="fas fa-fire"></i></div>
-        <h3>Water Heaters</h3>
-        <p>Repair and installation for tank and tankless water heaters. Hot water restored fast.</p>
+        <h3>Water Heater Service</h3>
+        <p>Repair and installation for tank and tankless water heaters. Same-day service available in {{CITY_NAME}} and {{CITY_COUNTY}}.</p>
         <a href="/plumbing/#water-heaters" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="service-card">
         <div class="service-icon"><i class="fas fa-water"></i></div>
         <h3>Drain Cleaning</h3>
-        <p>Stubborn clogs and slow drains cleared with professional-grade equipment.</p>
+        <p>Stubborn clogs and slow drains cleared with professional-grade equipment. We find the root cause, not just treat symptoms.</p>
         <a href="/plumbing/#drain-cleaning" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="service-card">
         <div class="service-icon"><i class="fas fa-home"></i></div>
         <h3>Septic Services</h3>
-        <p>Septic tank repairs, installations, lagoon systems, and lateral field solutions.</p>
-        <a href="/septic/" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+        <p>Septic tank repairs, installations, lagoon systems, and lateral field solutions for {{CITY_NAME}} and {{CITY_COUNTY}} properties.</p>
+        <a href="/septic/" class="service-link">See all septic services <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="service-card">
         <div class="service-icon"><i class="fas fa-search"></i></div>
         <h3>Leak Detection</h3>
-        <p>We find hidden leaks fast before they become expensive water damage nightmares.</p>
+        <p>Advanced equipment locates hidden leaks inside walls and under slabs before they cause major damage. Fast, accurate, no guesswork.</p>
         <a href="/plumbing/#leak-detection" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="service-card">
         <div class="service-icon"><i class="fas fa-hard-hat"></i></div>
         <h3>Excavation</h3>
-        <p>Trenching and excavation for septic systems, utility lines, and underground pipe work.</p>
-        <a href="/excavation/" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+        <p>In-house excavation crew for septic systems, utility lines, drainage, and underground pipe work throughout {{CITY_COUNTY}}.</p>
+        <a href="/excavation/" class="service-link">See all excavation services <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding:80px 0;background:var(--white);">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Common Questions</span>
+      <h2>Plumbing Questions from<br><em>{{CITY_NAME}} Homeowners</em></h2>
+    </div>
+    <div class="faq-list" style="max-width:760px;margin:0 auto;">
+
+      <div class="faq-item">
+        <h3>Does Sunflower Plumbing serve {{CITY_NAME}}, KS?</h3>
+        <p>Yes. Sunflower Plumbing &amp; Excavation serves {{CITY_NAME}}, KS for plumbing repairs, water heater service, drain cleaning, septic work, and excavation. We're based in El Dorado and serve {{CITY_COUNTY}} and surrounding communities.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How much does a plumber cost in {{CITY_NAME}}, KS?</h3>
+        <p>Most plumbing repairs in {{CITY_NAME}} run $150&ndash;$500 depending on the job. Water heater replacements typically range $800&ndash;$1,800 installed. Sunflower Plumbing provides upfront quotes before any work begins &mdash; call <a href="tel:+13163336326">(316) 333-6326</a> for a free estimate.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is Sunflower Plumbing available for emergency plumbing in {{CITY_NAME}}?</h3>
+        <p>Yes. Sunflower Plumbing offers 24/7 emergency plumbing service in {{CITY_NAME}} and throughout {{CITY_COUNTY}}. Call <a href="tel:+13163336326">(316) 333-6326</a> any time for burst pipes, sewage backups, or any plumbing emergency.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What plumbing services does Sunflower Plumbing offer in {{CITY_NAME}}?</h3>
+        <p>Sunflower Plumbing &amp; Excavation offers water heater repair and installation, drain cleaning, leak detection, gas lines, sewer line repair, kitchen and bathroom plumbing, septic system service, and excavation in {{CITY_NAME}}, KS.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is Sunflower Plumbing licensed and insured in Kansas?</h3>
+        <p>Yes. Sunflower Plumbing &amp; Excavation is fully licensed and insured to perform plumbing and septic work in Kansas, including {{CITY_NAME}} and {{CITY_COUNTY}}.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NAP -->
+<section style="padding:50px 0;background:var(--dark);">
+  <div class="container" style="text-align:center;color:var(--white);">
+    <p style="margin:0;font-size:16px;opacity:0.85;">
+      <strong>Sunflower Plumbing &amp; Excavation</strong> &nbsp;|&nbsp; 3910 W. Central Ave, El Dorado, KS 67042 &nbsp;|&nbsp; <a href="tel:+13163336326" style="color:var(--yellow);">(316) 333-6326</a>
+    </p>
   </div>
 </section>
 
 <section class="call-band">
   <div class="container">
     <h2>Need a Plumber in <em>{{CITY_NAME}}?</em></h2>
-    <p>Sunflower Plumbing &amp; Excavation serves {{CITY_NAME}} and all of {{CITY_COUNTY}}. Call anytime &mdash; day or night.</p>
+    <p>Sunflower Plumbing &amp; Excavation serves {{CITY_NAME}} and all of {{CITY_COUNTY}}. Licensed, insured, upfront pricing. Call anytime &mdash; day or night.</p>
     <div class="call-band-ctas">
       <a href="tel:+13163336326" class="btn">
         <span>(316) 333-6326</span>
@@ -158,3 +275,5 @@
 <!-- TRACKING: GA4/GTM injected by Leo post-build -->
 </body>
 </html>
+
+
