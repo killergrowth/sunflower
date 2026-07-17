@@ -206,6 +206,7 @@ try {
 try {
   const services   = require(path.join(ROOT, '_data', 'services.js'));
   const citiesData = require(path.join(ROOT, '_data', 'cities.js'));
+  const serviceFaqs = require(path.join(ROOT, '_data', 'service-faqs.js'));
   const slTemplate = read(path.join(ROOT, '_partials', 'service-location-page.html'));
 
   let slCount = 0;
@@ -216,7 +217,8 @@ try {
       const cityNameFull    = city.name;
       const countyName      = city.county;
       const pageTitle       = `${svc.shortName} in ${cityNameFull}, KS | Sunflower Plumbing`;
-      const metaDesc        = `${svc.shortName} in ${cityNameFull}, KS. ${svc.tagline}. Licensed, insured, locally owned in Butler County. Call (316) 333-6326.`;
+      const metaDescRaw     = `${svc.shortName} in ${cityNameFull}, KS. ${svc.tagline}. Licensed, insured, locally owned in Butler County. Call (316) 333-6326.`;
+      const metaDesc        = metaDescRaw.length > 160 ? metaDescRaw.substring(0, 157) + '...' : metaDescRaw;
 
       const replaceTokens = (str) => (str || '')
         .replace(/\{\{CITY_NAME\}\}/g,   cityNameFull)
@@ -230,6 +232,26 @@ try {
         breadcrumbHtmlMiddle = `<span>/</span><a href="/${svc.urlPrefix}/">${svc.shortName}</a>`;
         breadcrumbPos = '4';
       }
+
+      // Build FAQ HTML, schema, and whatWeHandle from external service-faqs.js
+      const faqKey = serviceFaqs[svc.slug] ? svc.slug : (serviceFaqs[svc.urlPrefix.split('/').pop()] ? svc.urlPrefix.split('/').pop() : null);
+      const faqEntry = faqKey ? serviceFaqs[faqKey] : null;
+      const rawFaqs = faqEntry ? faqEntry.faqs : (svc.faqs || []);
+      const faqs = rawFaqs.map(faq => ({
+        q: replaceTokens(faq.q),
+        a: replaceTokens(faq.a),
+      }));
+      const faqHtml = faqs.map(faq => `<div class="faq-item" style="padding:24px 0;border-bottom:1px solid rgba(0,0,0,0.08);">
+  <h3 style="font-size:18px;margin-bottom:8px;">${faq.q}</h3>
+  <p style="font-size:16px;color:var(--text-muted);margin:0;">${faq.a}</p>
+</div>`).join('\n');
+      const faqSchema = faqs.map(faq => `{ "@type": "Question", "name": ${JSON.stringify(faq.q)}, "acceptedAnswer": { "@type": "Answer", "text": ${JSON.stringify(faq.a)} } }`).join(',\n          ');
+      const wwhItems = faqEntry ? (faqEntry.whatWeHandle || []) : [];
+      const whatWeHandleHtml = wwhItems.map(item => `<div style="background:var(--white);padding:32px;border-radius:8px;">
+  <div style="font-size:28px;margin-bottom:12px;"><i class="fas ${item.icon}" style="color:var(--yellow);"></i></div>
+  <h3 style="font-size:17px;margin-bottom:8px;">${item.title}</h3>
+  <p style="font-size:15px;color:var(--text-muted);margin:0;">${item.desc}</p>
+</div>`).join('\n');
 
       let html = slTemplate
         .replace(/\{\{PAGE_TITLE\}\}/g,              pageTitle)
@@ -253,7 +275,10 @@ try {
         .replace(/\{\{SERVICE_BODY\}\}/g,            replaceTokens(svc.serviceBody))
         .replace(/\{\{DIFFERENTIATOR\}\}/g,          replaceTokens(svc.differentiator))
         .replace(/\{\{URGENCY_NOTE\}\}/g,            replaceTokens(svc.urgencyNote))
-        .replace(/\{\{CTA\}\}/g,                     svc.cta);
+        .replace(/\{\{CTA\}\}/g,                     svc.cta)
+        .replace(/\{\{FAQ_HTML\}\}/g,                faqHtml)
+        .replace(/\{\{FAQ_SCHEMA\}\}/g,              faqSchema)
+        .replace(/\{\{WHAT_WE_HANDLE_HTML\}\}/g,     whatWeHandleHtml);
 
       html = injectPartials(html, header, footer);
       html = injectScripts(html, loadSiteScripts(SITE_ID));

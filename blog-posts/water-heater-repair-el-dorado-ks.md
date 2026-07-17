@@ -1,7 +1,7 @@
 ---
 slug: water-heater-repair-el-dorado-ks
 title: Water Heater Repair in El Dorado — What Fails and When to Replace Instead
-status: scheduled
+status: published
 publishDate: '2026-07-17'
 scheduledDate: '2026-07-17'
 excerpt: >-

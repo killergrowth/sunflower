@@ -59,7 +59,7 @@ module.exports = [
     metaDesc: 'Sunflower Plumbing serves Cassoday, KS with expert plumbing and septic services. Call (316) 333-6326.',
     heroSub: 'Plumbing and septic service for Cassoday and the open range of eastern Butler County.',
     intro: 'Cassoday â€” known as the Prairie Chicken Capital of the World â€” sits on the edge of the Flint Hills where rural properties spread across open grassland. Sunflower Plumbing regularly services properties in and around Cassoday, handling the unique plumbing and septic needs of rural Flint Hills homesteads.',
-    localDetail: 'Properties in the Cassoday area often have older septic systems and rely on well water. We\'re experienced with rural setups, perform honest inspections, and can handle septic repairs, lateral field work, and plumbing service for homes and ranch properties alike.',
+    localDetail: 'Properties in the Cassoday area often have older septic systems and rely on well water — common in eastern Butler County where municipal water service doesn\'t reach. Many farmsteads and rural homes in this area have aging galvanized supply lines, undersized or failing lateral fields, and water heaters that have never been serviced. The Flint Hills\' clay-limestone soil mix affects septic absorption and buried line behavior differently than Butler County\'s western corridors. We\'re experienced with rural setups, perform honest inspections, and handle septic repairs, lateral field installation, and plumbing service for homes and ranch properties throughout the area.',
     callout: 'Serving Cassoday and surrounding eastern Butler County ranch and rural properties.',
   },
   {
@@ -89,7 +89,7 @@ module.exports = [
     metaDesc: 'Sunflower Plumbing is El Dorado\'s trusted plumbing and septic company. Locally owned, licensed, and available 24/7. Call (316) 333-6326.',
     heroSub: 'El Dorado\'s hometown plumbing and septic team â€” locally owned, locally trusted.',
     intro: 'El Dorado is home. Sunflower Plumbing is based right here on West Central Avenue, and we\'ve been serving the Butler County seat with reliable plumbing and septic service from day one. Whether you\'re near El Dorado State Park, the downtown historic district, or out on the west side near US-77, we\'re your neighbors â€” not a call center franchise.',
-    localDetail: 'El Dorado was built on oil money and has the character to prove it â€” from the historic homes near 8th Avenue and Emporia Street to the newer developments west of Main Street. We know this city\'s plumbing quirks, its older cast iron systems, and the issues that come with Kansas weather. We\'re your team for everything from dripping faucets to septic emergencies.',
+    localDetail: 'El Dorado was built on oil money and has the character to prove it — from the historic homes near 8th Avenue and Emporia Street to the newer developments west of Main Street. Many of El Dorado\'s older homes still have galvanized or cast iron supply lines past their service life, and Butler County\'s hard water accelerates wear on water heaters, fixtures, and softener systems. Clay-heavy soils in the area also affect septic systems and buried line longevity. We know this city\'s plumbing quirks and the issues that come with aging housing stock and Kansas weather.',
     callout: 'Proudly serving all of El Dorado including downtown, West Central, the hospital district, and rural properties surrounding the city.',
   },
   {
@@ -243,6 +243,10 @@ module.exports = [
     callout: 'Serving Winfield and surrounding Cowley County communities for plumbing, drain, and water heater services.',
   },
 ];
+
+
+
+
 
 
 

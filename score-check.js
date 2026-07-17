@@ -90,8 +90,26 @@ function score(f) {
   // ── CAT 5: Technical & Schema (10 pts) ──
   const hasSchema  = html.includes('"@type": "Service"') && html.includes('"@type": "FAQPage"');
   const cat5_schema = hasSchema ? 4 : html.includes('application/ld+json') ? 2 : 0;
-  // Internal links — location pages are new, no inbound yet → flag
-  const cat5_links  = 0; // will be 0 until hubs + other pages link to these
+  // Internal links — check hub page(s) for inbound link to this page
+  const parts = f.split('/');
+  // e.g. plumbing/water-heater-repair/el-dorado-ks/index.html → hub = plumbing/water-heater-repair
+  const hubPath = parts.length >= 3
+    ? path.join(DIST, parts[0], parts[1], 'index.html')
+    : path.join(DIST, parts[0], 'index.html');
+  const pageSlug = '/' + parts.slice(0, -1).join('/') + '/';
+  let inboundCount = 0;
+  if (fs.existsSync(hubPath)) {
+    const hubHtml = fs.readFileSync(hubPath, 'utf8');
+    const linkMatches = (hubHtml.match(new RegExp('href="' + pageSlug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"', 'g')) || []).length;
+    inboundCount += linkMatches;
+  }
+  // Also check top-level hub (plumbing/index.html, excavation/index.html, etc.)
+  const topHubPath = path.join(DIST, parts[0], 'index.html');
+  if (fs.existsSync(topHubPath) && topHubPath !== hubPath) {
+    const topHtml = fs.readFileSync(topHubPath, 'utf8');
+    inboundCount += (topHtml.match(new RegExp('href="' + pageSlug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"', 'g')) || []).length;
+  }
+  const cat5_links  = inboundCount >= 3 ? 3 : inboundCount >= 1 ? 1 : 0;
   // Speed — assume pass (same CSS/JS stack as main site which passes)
   const cat5_speed  = 3;
   const cat5 = cat5_schema + cat5_links + cat5_speed;
@@ -103,7 +121,7 @@ function score(f) {
   if (cat1 < 20) autoFail.push('Cat1 < 20 (local uniqueness gate)');
   if (!h1) autoFail.push('Missing H1');
   if (!desc) autoFail.push('Missing meta desc');
-  if (cat5_links === 0) autoFail.push('No internal links (orphan — need to wire hubs)');
+  if (cat5_links === 0) autoFail.push(`No internal links pointing to this page (checked hub pages, found ${inboundCount})`);
 
   return { file: f, words, total, cat1, cat2, cat3, cat4, cat5, autoFail };
 }
