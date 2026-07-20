@@ -1070,4 +1070,14 @@ h1, h2, h3, h4, h5 {
   .about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
   .proof-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
   .contact-grid { grid-template-columns: 1fr !important; }
+
+  /* Catch-all: collapse ANY inline-style grid to single column on mobile */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .mobile-col {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
 }
