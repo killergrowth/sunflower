@@ -9,10 +9,10 @@
   </url>
 
   <url>
-    <loc>https://sunflowerplumbing.com/about/</loc>
+    <loc>https://sunflowerplumbing.com/about-us/</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
   <url>
@@ -191,10 +191,10 @@
   </url>
 
   <url>
-    <loc>https://sunflowerplumbing.com/contact/</loc>
+    <loc>https://sunflowerplumbing.com/contact-us/</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
   <url>
@@ -1431,6 +1431,13 @@
 
   <url>
     <loc>https://sunflowerplumbing.com/plumbing/</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sunflowerplumbing.com/plumbing-tips/</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -3180,6 +3187,13 @@
   </url>
 
   <url>
+    <loc>https://sunflowerplumbing.com/privacy-policy/</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://sunflowerplumbing.com/septic/</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -3524,6 +3538,13 @@
 
   <url>
     <loc>https://sunflowerplumbing.com/septic/winfield-ks/</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sunflowerplumbing.com/terms-of-use/</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

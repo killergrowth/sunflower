@@ -2,6 +2,84 @@
 # Per SOP: never remove entries, only add. Use 301 for permanent redirects.
 
 # Old WP URL patterns -> new structure (add as needed during DNS cutover)
-/about-us/    /about/    301
-/contact-us/  /contact/  301
-/services/    /plumbing/ 301
+# about-us and contact-us: slugs changed in source — no redirect needed
+
+# /services/ -> new /plumbing/ or /septic/ structure
+/services/                                          /plumbing/                              301
+/services/septic-services/                          /septic/                                301
+/services/lateral-field-installation/               /septic/lateral-field-installation/     301
+/services/sewer-line-replacement-repair/            /plumbing/sewer-line-repair/            301
+/services/drain-cleaning-clog-removal/              /plumbing/drain-cleaning/               301
+/services/leak-detection-repair/                    /plumbing/leak-detection/               301
+/services/kitchen-bathroom-plumbing/                /plumbing/kitchen-bathroom-plumbing/    301
+/services/gas-line-services/                        /plumbing/gas-line-services/            301
+/services/fixture-replacement-repair/               /plumbing/fixture-replacement/          301
+/services/toilet-faucet-repair/                     /plumbing/toilet-faucet-repair/         301
+/services/water-softener-installation/              /plumbing/water-softener-installation/  301
+/services/water-heater-repair-installation-in-el-dorado-ks/ /plumbing/water-heater-repair/ 301
+
+# Old WP blog root posts -> /blog/slug/
+/plumbing-tips/                                     /blog/                                  301
+/water-heater-repair-in-el-dorado-what-fails-and-when-to-replace-instead/   /blog/water-heater-repair-el-dorado-ks/  301
+/excavation-near-you-in-butler-county-kansas-what-to-look-for-before-you-hire/  /blog/excavation-near-me-el-dorado-ks/  301
+/septic-riser-installation-in-el-dorado-what-it-is-and-why-it-makes-sense/  /blog/septic-riser-installation-el-dorado-ks/  301
+/utility-line-installation-in-butler-county-kansas-what-rural-properties-need/  /blog/utility-line-installation-el-dorado-ks/  301
+/grading-services-in-el-dorado-why-it-matters-more-in-butler-county-clay-soil/  /blog/grading-services-el-dorado-ks/  301
+/land-clearing-in-butler-county-kansas-what-rural-property-owners-need-to-know/  /blog/land-clearing-el-dorado-ks/  301
+/site-preparation-in-butler-county-kansas-what-rural-builds-need-before-construction-starts/  /blog/site-preparation-el-dorado-ks/  301
+/trenching-and-excavation-in-el-dorado-what-its-used-for-in-butler-county/  /blog/trenching-services-el-dorado-ks/  301
+/excavation-cost-in-butler-county-kansas-what-drives-the-price/  /blog/excavation-cost-el-dorado-ks/  301
+/finding-an-excavation-contractor-in-butler-county-kansas-what-to-look-for-before-you-hire/  /blog/excavation-contractor-el-dorado-ks/  301
+/excavation-services-in-el-dorado-and-butler-county-kansas/  /blog/excavation-services-el-dorado-ks/  301
+/septic-drain-field-repair-in-butler-county-how-leach-fields-fail-and-what-can-be-done/  /blog/septic-drain-field-repair-el-dorado-ks/  301
+/septic-vs-sewer-in-butler-county-kansas-what-the-difference-means-for-your-property/  /blog/septic-vs-sewer-el-dorado-ks/  301
+/septic-tank-cost-in-butler-county-kansas-pumping-repair-and-replacement/  /blog/septic-tank-cost-el-dorado-ks/  301
+/septic-tank-installation-in-butler-county-kansas-what-the-process-involves/  /blog/septic-tank-installation-el-dorado-ks/  301
+/septic-system-repair-in-el-dorado-signs-of-failure-and-what-gets-fixed/  /blog/septic-system-repair-el-dorado-ks/  301
+/septic-tank-inspection-in-butler-county-kansas-what-gets-checked-and-when-you-need-one/  /blog/septic-tank-inspection-el-dorado-ks/  301
+/signs-your-septic-tank-is-full-or-failing-in-butler-county-kansas/  /blog/signs-septic-tank-is-full-el-dorado-ks/  301
+/how-often-to-pump-your-septic-tank-in-butler-county-kansas/  /blog/how-often-to-pump-septic-tank-el-dorado-ks/  301
+/septic-tank-pumping-in-el-dorado-what-happens-and-why-it-matters-in-kansas-clay/  /blog/septic-tank-pumping-el-dorado-ks/  301
+/septic-services-in-el-dorado-and-butler-county-kansas/  /blog/septic-services-el-dorado-ks/  301
+/pipe-repair-in-el-dorado-types-of-failures-and-how-sunflower-fixes-them/  /blog/pipe-repair-el-dorado-ks/  301
+/burst-pipe-repair-in-el-dorado-what-to-do-right-now-and-what-sunflower-fixes/  /blog/burst-pipe-repair-el-dorado-ks/  301
+/sewer-line-repair-in-el-dorado-signs-options-and-what-sunflower-handles/  /blog/sewer-line-repair-el-dorado-ks/  301
+/how-to-unclog-a-drain-in-el-dorado-what-works-and-when-to-call-a-plumber/  /blog/how-to-unclog-a-drain-el-dorado-ks/  301
+/how-to-fix-a-leaky-faucet-in-el-dorado-what-causes-it-and-when-to-call-a-plumber/  /blog/how-to-fix-a-leaky-faucet-el-dorado-ks/  301
+/low-water-pressure-in-el-dorado-homes-causes-and-what-to-check-first/  /blog/low-water-pressure-el-dorado-ks/  301
+/running-toilet-in-el-dorado-whats-causing-it-and-how-to-fix-it/  /blog/running-toilet-fix-el-dorado-ks/  301
+/drain-clogs-in-butler-county-when-to-diy-and-when-to-call-a-plumber/  /blog/drain-clog-repair-el-dorado-ks/  301
+/plumbing-repair-in-el-dorado-ks-what-to-expect-on-a-service-call/  /blog/plumbing-repair-el-dorado-ks/  301
+/finding-a-reliable-plumber-near-you-in-el-dorado-and-butler-county/  /blog/plumber-near-me-el-dorado-ks/  301
+/affordable-plumber-el-dorado-for-every-plumbing-need/  /blog/affordable-plumber-el-dorado-for-every-plumbing-need/  301
+/top-plumber-el-dorado-services-near-you/  /blog/top-plumber-el-dorado-services-near-you/  301
+/expert-plumber-el-dorado-for-homes-businesses/  /blog/expert-plumber-el-dorado-for-homes-businesses/  301
+/reliable-plumber-el-dorado-fast-service-you-can-trust/  /blog/reliable-plumber-el-dorado-fast-service-you-can-trust/  301
+/24-hour-plumber-el-dorado-for-emergencies/  /blog/24-hour-plumber-el-dorado-for-emergencies/  301
+/expert-plumber-el-dorado-for-any-plumbing-job/  /blog/expert-plumber-el-dorado-for-any-plumbing-job/  301
+/affordable-plumber-el-dorado-homeowners-trust/  /blog/affordable-plumber-el-dorado-homeowners-trust/  301
+/trusted-plumber-el-dorado-for-fast-repairs/  /blog/trusted-plumber-el-dorado-for-fast-repairs/  301
+/how-to-choose-the-right-septic-service-provider-for-your-home/  /blog/how-to-choose-the-right-septic-service-provider-for-your-home/  301
+/why-hiring-a-certified-septic-professional-saves-you-money-long-term/  /blog/why-hiring-a-certified-septic-professional-saves-you-money-long-term/  301
+/common-septic-problems-a-licensed-septic-professional-can-fix/  /blog/common-septic-problems-a-licensed-septic-professional-can-fix/  301
+/signs-you-need-a-professional-plumber-immediately-today/  /blog/signs-you-need-a-professional-plumber-immediately-today/  301
+/experienced-plumber-offering-complete-plumbing-services/  /blog/experienced-plumber-offering-complete-plumbing-services/  301
+/reliable-plumber-for-emergency-and-routine-plumbing/  /blog/reliable-plumber-for-emergency-and-routine-plumbing/  301
+/trusted-local-plumber-for-fast-residential-repairs/  /blog/trusted-local-plumber-for-fast-residential-repairs/  301
+/professional-plumber-serving-homes-and-businesses/  /blog/professional-plumber-serving-homes-and-businesses/  301
+/remodel-needs-an-experienced-plumber/  /blog/remodel-needs-an-experienced-plumber/  301
+/budget-friendly-plumber-solutions-for/  /blog/budget-friendly-plumber-solutions-for/  301
+/should-know-before-hiring-a-plumber/  /blog/should-know-before-hiring-a-plumber/  301
+/essential-plumber-services-that-protect/  /blog/essential-plumber-services-that-protect/  301
+/top-benefits-of-timely-sewer-line-repair/  /blog/top-benefits-of-timely-sewer-line-repair/  301
+/avoid-emergencies-with-sewer-line-repair/  /blog/avoid-emergencies-with-sewer-line-repair/  301
+/sewer-line-repair-made-easy-for/  /blog/sewer-line-repair-made-easy-for/  301
+/how-sewer-line-repair-saves-you-money/  /blog/how-sewer-line-repair-saves-you-money/  301
+/quick-fixes-with-a-reliable-plumber-el-dorado-near-you/  /blog/quick-fixes-with-a-reliable-plumber-el-dorado-near-you/  301
+/plumber-el-dorado-services-for-drain-and-sewer-problems/  /blog/plumber-el-dorado-services-for-drain-and-sewer-problems/  301
+/finding-the-right-plumber-el-dorado-for-your-needs/  /blog/finding-the-right-plumber-el-dorado-for-your-needs/  301
+/affordable-services-from-a-plumber-el-dorado/  /blog/affordable-services-from-a-plumber-el-dorado/  301
+/protecting-groundwater-with-proper-el-dorado-septic-care/  /blog/protecting-groundwater-with-proper-el-dorado-septic-care/  301
+/benefits-of-scheduling-routine-el-dorado-septic-pumping/  /blog/benefits-of-scheduling-routine-el-dorado-septic-pumping/  301
+/how-regular-el-dorado-septic-cleaning-protects-your-property/  /blog/how-regular-el-dorado-septic-cleaning-protects-your-property/  301
+/signs-your-el-dorado-septic-system-needs-professional-care/  /blog/signs-your-el-dorado-septic-system-needs-professional-care/  301

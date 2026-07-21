@@ -72,7 +72,7 @@ const footer = read(path.join(ROOT, '_partials', 'footer.html'));
 // 3. Pages to build: [sourcePath, distPath]
 const pages = [
   ['index.html',                      'index.html'],
-  ['about/index.html',               'about/index.html'],
+
   ['plumbing/index.html',                                        'plumbing/index.html'],
   ['plumbing/water-heater-repair/index.html',                    'plumbing/water-heater-repair/index.html'],
   ['plumbing/drain-cleaning/index.html',                         'plumbing/drain-cleaning/index.html'],
@@ -95,7 +95,11 @@ const pages = [
   ['areas-served/index.html',        'areas-served/index.html'],
   ['financing/index.html',           'financing/index.html'],
   ['blog/index.html',                'blog/index.html'],
-  ['contact/index.html',             'contact/index.html'],
+  ['about-us/index.html',             'about-us/index.html'],
+  ['contact-us/index.html',           'contact-us/index.html'],
+  ['privacy-policy/index.html',       'privacy-policy/index.html'],
+  ['terms-of-use/index.html',         'terms-of-use/index.html'],
+  ['plumbing-tips/index.html',        'plumbing-tips/index.html'],
   ['404.html',                       '404.html']];
 
 for (const [src, dest] of pages) {
@@ -140,8 +144,8 @@ for (const f of rootFiles) {
 // 6. Encoding diagnostic per SOP
 const filesToCheck = [
   path.join(DIST, 'index.html'),
-  path.join(DIST, 'about', 'index.html'),
-  path.join(DIST, 'contact', 'index.html'),
+  path.join(DIST, 'about-us', 'index.html'),
+  path.join(DIST, 'contact-us', 'index.html'),
   path.join(DIST, 'css', 'styles.css'),
   path.join(DIST, 'js', 'main.js')];
 let problems = 0;
