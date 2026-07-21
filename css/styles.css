@@ -17,7 +17,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   font-family: 'Barlow', sans-serif;
@@ -26,6 +26,7 @@ body {
   color: var(--grey);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 img { max-width: 100%; display: block; }
@@ -130,7 +131,7 @@ h1, h2, h3, h4, h5 {
   align-items: center;
   justify-content: flex-end;
   gap: 32px;
-  padding: 14px 24px;
+  padding: 14px 40px;
   max-width: 1480px;
   margin: 0 auto;
 }
@@ -169,7 +170,7 @@ h1, h2, h3, h4, h5 {
 .header-inner {
   display: flex;
   align-items: center;
-  padding: 18px 32px;
+  padding: 18px 40px;
   max-width: 1480px;
   margin: 0 auto;
   gap: 40px;
@@ -319,7 +320,7 @@ h1, h2, h3, h4, h5 {
   min-height: 680px;
   padding: 80px 24px;
 }
-.hero-content { max-width: 640px; }
+.hero-content { max-width: 900px; width: 100%; }
 .hero-eyebrow {
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
@@ -331,12 +332,15 @@ h1, h2, h3, h4, h5 {
 }
 .hero h1 {
   font-family: 'Barlow Condensed', 'DM Sans', sans-serif;
-  font-size: clamp(52px, 7vw, 96px);
+  font-size: clamp(28px, 4vw, 46px);
   font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -1px;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
   margin-bottom: 24px;
   text-transform: uppercase;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .hero-sub {
   font-size: 18px;

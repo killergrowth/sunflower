@@ -1,7 +1,7 @@
 ---
 slug: water-heater-installation-cost-el-dorado-ks
 title: Water Heater Installation Cost in El Dorado — What to Expect in Butler County
-status: scheduled
+status: published
 publishDate: '2026-07-21'
 scheduledDate: '2026-07-21'
 excerpt: >-
