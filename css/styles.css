@@ -332,7 +332,7 @@ h1, h2, h3, h4, h5 {
 }
 .hero h1 {
   font-family: 'Barlow Condensed', 'DM Sans', sans-serif;
-  font-size: clamp(52px, 7vw, 96px);
+  font-size: clamp(47px, 6.3vw, 86px);
   font-weight: 800;
   line-height: 0.95;
   letter-spacing: -1px;
@@ -1047,7 +1047,7 @@ h1, h2, h3, h4, h5 {
   .logo img { height: 48px; }
   .hero { min-height: 520px; }
   .hero-inner { min-height: 520px; padding: 60px 20px; }
-  .hero h1 { font-size: 52px; }
+  .hero h1 { font-size: 47px; }
   .hero-sub { font-size: 16px; }
   .hero-ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
   .trust-strip-inner { flex-direction: column; }
