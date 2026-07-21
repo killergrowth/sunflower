@@ -63,3 +63,19 @@ if (contactForm) {
     }
   });
 }
+
+// HouseCall Pro booking widget — intercept #hcpro clicks and open modal
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a[href="#hcpro"]');
+  if (!link) return;
+  e.preventDefault();
+  if (typeof HCPWidget !== 'undefined' && HCPWidget.openModal) {
+    HCPWidget.openModal();
+  } else {
+    // Widget not loaded yet — fall back to direct booking URL
+    window.open(
+      'https://online-booking.housecallpro.com/book/Sunflower-Plumbing--Reliable-Dirtworks?token=cbc0ca9936ec4f589da40d02d6f05a11',
+      '_blank'
+    );
+  }
+});
