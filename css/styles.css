@@ -816,7 +816,8 @@ h1, h2, h3, h4, h5 {
   display: flex;
   flex-direction: column;
 }
-.blog-card-img img { width: 100%; height: 220px; object-fit: cover; display: block; }
+.blog-card-img { aspect-ratio: 1 / 1; overflow: hidden; }
+.blog-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .blog-card-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
 .blog-card-meta {
   font-family: 'DM Sans', sans-serif;

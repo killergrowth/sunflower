@@ -24,12 +24,20 @@
       transition: border-color 0.2s;
     }
     .blog-grid .kg-blog-card:hover { border-top-color: var(--yellow, #f5c400) !important; }
+    .blog-grid .kg-blog-card > a {
+      display: block;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
     .blog-grid .kg-blog-card > a img {
       width: 100% !important;
-      height: 200px !important;
+      height: 100% !important;
       object-fit: cover !important;
-      border-radius: 4px !important;
-      margin-bottom: 16px;
+      object-position: center !important;
+      border-radius: 0 !important;
+      margin-bottom: 0 !important;
       display: block;
     }
     .blog-grid .kg-blog-card-body { flex: none !important; }
