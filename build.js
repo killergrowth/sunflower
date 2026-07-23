@@ -319,10 +319,9 @@ try {
   }).join('\n');
 
   const lpHeaderPartial = read(path.join(ROOT, '_partials', 'header-stripped.html'));
-  const lpFooterPartial = read(path.join(ROOT, '_partials', 'footer.html')); // use main site footer
   let lpHtml = read(path.join(ROOT, 'sign-up.html'));
   lpHtml = lpHtml.replace('<!-- HEADER -->', lpHeaderPartial);
-  lpHtml = lpHtml.replace('<!-- FOOTER -->', lpFooterPartial);
+  // Footer is inlined in sign-up.html -- no footer partial injection needed
   lpHtml = lpHtml.replace('<!-- REVIEW_CARDS -->', lpReviewCards);
   lpHtml = injectScripts(lpHtml, loadSiteScripts(SITE_ID));
   write(path.join(DIST, 'sign-up', 'index.html'), lpHtml);

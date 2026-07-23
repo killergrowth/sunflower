@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Plus Jakarta Sans',sans-serif;color:#121315;background:#fff;-webkit-font-smoothing:antialiased}
@@ -18,7 +19,7 @@
     /* ── Hero ── */
     .lp-hero{
       position:relative;
-      background:url('/assets/images/backgrounds/hero-bg.jpg') center center/cover no-repeat;
+      background:url('/images/hero.jpg') center center/cover no-repeat;
       min-height:520px;
       display:flex;align-items:center;
     }
@@ -176,7 +177,7 @@
           <option value="other">Other / Not Sure</option>
         </select>
         <textarea name="message" placeholder="Tell us about your project (optional)"></textarea>
-        <div class="cf-turnstile" data-sitekey="TURNSTILE_SITE_KEY_PLACEHOLDER" data-theme="light"></div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAD8RAYprb-Am76Zx" data-theme="light"></div>
         <button type="submit" class="lp-form-card__btn">
           <i class="fa-solid fa-paper-plane"></i> Send My Request
         </button>
@@ -211,21 +212,21 @@
     <p class="lp-section__lead">From drain cleaning and water heaters to septic systems, gas lines, and excavation &mdash; Sunflower handles it all with the same upfront pricing, clear communication, and professional workmanship.</p>
     <div class="lp-services">
       <div class="lp-service-card">
-        <img src="/assets/images/service/drain-cleaning.jpg" alt="Drain cleaning service El Dorado KS" loading="lazy">
+        <img src="/images/work-photo.jpg" alt="Drain cleaning service El Dorado KS" loading="lazy">
         <div class="lp-service-card__body">
           <div class="lp-service-card__title">Drain Cleaning</div>
           <div class="lp-service-card__text">Stubborn clogs cleared quickly with professional-grade equipment and no mess. Fast response, upfront pricing.</div>
         </div>
       </div>
       <div class="lp-service-card">
-        <img src="/assets/images/service/water-heater.jpg" alt="Water heater repair and replacement Butler County KS" loading="lazy">
+        <img src="/images/sunflower-1-3.jpg" alt="Water heater repair and replacement Butler County KS" loading="lazy">
         <div class="lp-service-card__body">
           <div class="lp-service-card__title">Water Heater Services</div>
           <div class="lp-service-card__text">Repair and installation for tank and tankless water heaters. Hot water restored fast &mdash; same-day service available.</div>
         </div>
       </div>
       <div class="lp-service-card">
-        <img src="/assets/images/service/septic-excavation.jpg" alt="Septic and excavation services Butler County Kansas" loading="lazy">
+        <img src="/images/hero.jpg" alt="Septic and excavation services Butler County Kansas" loading="lazy">
         <div class="lp-service-card__body">
           <div class="lp-service-card__title">Septic &amp; Excavation</div>
           <div class="lp-service-card__text">Full septic repair, installation, and lagoon systems. Excavation handled in-house &mdash; no need for two contractors.</div>
@@ -272,7 +273,7 @@
       <a href="tel:3163336326" class="lp-area__cta"><i class="fa-solid fa-phone"></i> Call (316) 333-6326</a>
     </div>
     <div>
-      <img src="/assets/images/sunflower-team.jpg" alt="Sunflower Plumbing team serving Butler County Kansas" loading="lazy" style="width:100%;border-radius:10px;object-fit:cover;max-height:400px;">
+      <img src="/images/team.jpg" alt="Sunflower Plumbing team serving Butler County Kansas" loading="lazy" style="width:100%;border-radius:10px;object-fit:cover;max-height:400px;">
     </div>
   </div>
 </section>
@@ -287,11 +288,24 @@
   <a href="tel:3163336326" class="lp-phone-link"><i class="fa-solid fa-phone"></i> (316) 333-6326</a>
 </section>
 
-<!-- FOOTER -->
+<!-- LP FOOTER -->
+<footer style="background:#121315;padding:28px 20px;text-align:center;">
+  <div style="max-width:1140px;margin:0 auto;">
+    <a href="/" style="display:inline-block;margin-bottom:14px;line-height:0;">
+      <img src="/images/logo-white.png" alt="Sunflower Plumbing &amp; Excavation" style="height:44px;width:auto;">
+    </a>
+    <div style="color:rgba(255,255,255,0.6);font-size:13px;line-height:1.8;">
+      <div style="margin-bottom:4px;">3910 W. Central Ave, El Dorado, KS 67042</div>
+      <div style="margin-bottom:4px;"><a href="tel:3163336326" style="color:#FCAF18;font-weight:600;">(316) 333-6326</a> &nbsp;&middot;&nbsp; <a href="mailto:contact@sunflowerplumbing.com" style="color:rgba(255,255,255,0.6);">contact@sunflowerplumbing.com</a></div>
+      <div style="margin-top:10px;">&copy; <span id="lp-year"></span> Sunflower Plumbing &amp; Excavation. All rights reserved. &nbsp;&middot;&nbsp; <a href="/privacy-policy/" style="color:rgba(255,255,255,0.45);">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('lp-year').textContent=new Date().getFullYear();</script>
 
 <!-- Scripts -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<script src="/assets/vendors/fontawesome/js/all.min.js" defer></script>
+
 <script>
 document.querySelectorAll('.dynamic-year').forEach(function(el){el.textContent=new Date().getFullYear();});
 
