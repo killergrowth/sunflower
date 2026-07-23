@@ -297,3 +297,36 @@ try {
 
 // Generate sitemap from actual dist/ contents
 generateSitemap({ distDir: DIST, siteRoot: ROOT, domain: SITE_DOMAIN });
+
+// 9. Build sign-up landing page
+try {
+  const lpReviewsFile = path.join(ROOT, 'data', 'sign-up-reviews.json');
+  const lpReviews = fs.existsSync(lpReviewsFile) ? JSON.parse(read(lpReviewsFile)) : [];
+  const lpReviewCards = lpReviews.map(r => {
+    const initial = (r.author || 'A').charAt(0).toUpperCase();
+    const esc = t => (t||'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return `<div class="lp-review-card">
+  <div class="lp-review-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+  <p class="lp-review-text">&ldquo;${esc(r.text)}&rdquo;</p>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div style="width:36px;height:36px;background:#FCAF18;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#121315;font-weight:700;font-size:14px;flex-shrink:0;">${initial}</div>
+    <div>
+      <div class="lp-review-author">${esc(r.author)}</div>
+      <div class="lp-review-location">${esc(r.date||'')}</div>
+    </div>
+  </div>
+</div>`;
+  }).join('\n');
+
+  const lpHeaderPartial = read(path.join(ROOT, '_partials', 'header-stripped.html'));
+  const lpFooterPartial = read(path.join(ROOT, '_partials', 'footer.html')); // use main site footer
+  let lpHtml = read(path.join(ROOT, 'sign-up.html'));
+  lpHtml = lpHtml.replace('<!-- HEADER -->', lpHeaderPartial);
+  lpHtml = lpHtml.replace('<!-- FOOTER -->', lpFooterPartial);
+  lpHtml = lpHtml.replace('<!-- REVIEW_CARDS -->', lpReviewCards);
+  lpHtml = injectScripts(lpHtml, loadSiteScripts(SITE_ID));
+  write(path.join(DIST, 'sign-up', 'index.html'), lpHtml);
+  console.log('Built: sign-up/index.html');
+} catch (err) {
+  console.error('[Sign-Up LP] FAILED:', err.message);
+}

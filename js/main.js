@@ -47,16 +47,35 @@ if (contactForm) {
     const originalHTML = btn.innerHTML;
     btn.disabled = true;
     btn.innerHTML = '<span>Sending...</span>';
-    const data = Object.fromEntries(new FormData(contactForm));
+
+    const fd = new FormData(contactForm);
+    const payload = {
+      firstName: fd.get('firstName') || fd.get('first_name') || fd.get('name')?.split(' ')[0] || '',
+      lastName:  fd.get('lastName')  || fd.get('last_name')  || fd.get('name')?.split(' ').slice(1).join(' ') || '',
+      phone:     fd.get('phone') || '',
+      email:     fd.get('email') || '',
+      service:   fd.get('service') || '',
+      message:   fd.get('message') || '',
+    };
+
     try {
-      // TODO: Wire to GHL form endpoint when available
-      // const res = await fetch('ENDPOINT', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
-      console.log('Form data:', data);
-      setTimeout(() => {
-        btn.innerHTML = '<span>Sent! We\'ll be in touch.</span>';
-        contactForm.reset();
-      }, 800);
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error('Server error');
+
+      // Fire GTM dataLayer event for generate_lead conversion
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'form_submit_success', form_type: 'contact_form' });
+
+      btn.innerHTML = '<span>Sent! We\'ll be in touch shortly.</span>';
+      contactForm.reset();
+
     } catch (err) {
+      console.error('Form submission error:', err);
       btn.innerHTML = '<span>Error &mdash; please call us at (316) 333-6326</span>';
       btn.disabled = false;
       setTimeout(() => { btn.innerHTML = originalHTML; btn.disabled = false; }, 4000);

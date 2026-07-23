@@ -1,0 +1,190 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-22 18:40:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "sunflowerplumbing.com",
+      "publicId": "GTM-P52V4GWP",
+      "usageContext": ["WEB"]
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "GA4 - Configuration",
+        "type": "googtag",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "tagId", "value": "G-JXZJM5L4H5" }
+        ],
+        "firingTriggerId": ["2147479553"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "2",
+        "name": "GA4 - phone_click",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "phone_click" },
+          { "type": "TEMPLATE", "key": "measurementId", "value": "G-JXZJM5L4H5" }
+        ],
+        "firingTriggerId": ["10"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "3",
+        "name": "GA4 - email_click",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "email_click" },
+          { "type": "TEMPLATE", "key": "measurementId", "value": "G-JXZJM5L4H5" }
+        ],
+        "firingTriggerId": ["11"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "4",
+        "name": "GA4 - generate_lead",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "generate_lead" },
+          { "type": "TEMPLATE", "key": "measurementId", "value": "G-JXZJM5L4H5" }
+        ],
+        "firingTriggerId": ["12"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "5",
+        "name": "GA4 - cta_click",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "cta_click" },
+          { "type": "TEMPLATE", "key": "measurementId", "value": "G-JXZJM5L4H5" }
+        ],
+        "firingTriggerId": ["13"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "6",
+        "name": "GA4 - scroll_depth",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "scroll_depth" },
+          { "type": "TEMPLATE", "key": "measurementId", "value": "G-JXZJM5L4H5" },
+          {
+            "type": "LIST", "key": "eventParameters",
+            "list": [
+              { "type": "MAP", "map": [
+                { "type": "TEMPLATE", "key": "name", "value": "percent_scrolled" },
+                { "type": "TEMPLATE", "key": "value", "value": "{{Scroll Depth Threshold}}" }
+              ]}
+            ]
+          }
+        ],
+        "firingTriggerId": ["14"]
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "10",
+        "name": "Click - Phone (tel:)",
+        "type": "LINK_CLICK",
+        "filter": [
+          {
+            "type": "CONTAINS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{Click URL}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "tel:" }
+            ]
+          }
+        ],
+        "waitForTags": { "type": "BOOLEAN", "key": "waitForTags", "value": "false" },
+        "checkValidation": { "type": "BOOLEAN", "key": "checkValidation", "value": "false" },
+        "waitForTagsTimeout": { "type": "TEMPLATE", "key": "waitForTagsTimeout", "value": "2000" },
+        "uniqueTriggerId": { "type": "TEMPLATE", "key": "uniqueTriggerId", "value": "10" }
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "11",
+        "name": "Click - Email (mailto:)",
+        "type": "LINK_CLICK",
+        "filter": [
+          {
+            "type": "CONTAINS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{Click URL}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "mailto:" }
+            ]
+          }
+        ],
+        "waitForTags": { "type": "BOOLEAN", "key": "waitForTags", "value": "false" },
+        "checkValidation": { "type": "BOOLEAN", "key": "checkValidation", "value": "false" },
+        "waitForTagsTimeout": { "type": "TEMPLATE", "key": "waitForTagsTimeout", "value": "2000" },
+        "uniqueTriggerId": { "type": "TEMPLATE", "key": "uniqueTriggerId", "value": "11" }
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "12",
+        "name": "Form Submit Success",
+        "type": "FORM_SUBMISSION",
+        "filter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{Page URL}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": ".*" }
+            ]
+          }
+        ],
+        "waitForTags": { "type": "BOOLEAN", "key": "waitForTags", "value": "true" },
+        "checkValidation": { "type": "BOOLEAN", "key": "checkValidation", "value": "true" },
+        "waitForTagsTimeout": { "type": "TEMPLATE", "key": "waitForTagsTimeout", "value": "2000" },
+        "uniqueTriggerId": { "type": "TEMPLATE", "key": "uniqueTriggerId", "value": "12" }
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "13",
+        "name": "Click - CTA Button",
+        "type": "CLICK",
+        "filter": [
+          {
+            "type": "CONTAINS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{Click Classes}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "wallox-btn" }
+            ]
+          }
+        ],
+        "uniqueTriggerId": { "type": "TEMPLATE", "key": "uniqueTriggerId", "value": "13" }
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "14",
+        "name": "Scroll Depth - 50% and 90%",
+        "type": "SCROLL_DEPTH",
+        "verticalThresholdType": { "type": "TEMPLATE", "key": "verticalThresholdType", "value": "PERCENT" },
+        "verticalThresholds": { "type": "TEMPLATE", "key": "verticalThresholds", "value": "50,90" },
+        "uniqueTriggerId": { "type": "TEMPLATE", "key": "uniqueTriggerId", "value": "14" }
+      }
+    ],
+    "variable": []
+  }
+}
