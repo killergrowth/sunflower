@@ -35,12 +35,17 @@
     .lp-hero__inner{position:relative;z-index:2;width:100%;max-width:1140px;margin:0 auto;padding:60px 20px;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:flex-start;}
     .lp-hero__copy{color:#fff;padding-top:24px;}
     .lp-hero__eyebrow{display:inline-block;background:#FCAF18;color:#121315;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px;margin-bottom:18px;}
-    .lp-hero__h1{font-size:clamp(40px,4vw,46px);font-weight:800;line-height:1.15;margin-bottom:18px;color:#fff;}
+    .lp-hero__h1{font-size:clamp(50px,4.5vw,56px);font-weight:800;line-height:1.15;margin-bottom:18px;color:#fff;}
     .lp-hero__h1 span{color:#FCAF18;}
     .lp-hero__sub{font-size:16px;line-height:1.7;color:rgba(255,255,255,0.82);margin-bottom:28px;max-width:480px;}
     .lp-trust{display:flex;flex-wrap:wrap;gap:12px 20px;}
     .lp-trust__item{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.9);font-size:14px;font-weight:600;}
     .lp-trust__item i{color:#FCAF18;font-size:15px;}
+    @media(min-width:768px){
+      .lp-trust{flex-direction:column;gap:16px 0;}
+      .lp-trust__item{font-size:18px;}
+      .lp-trust__item i{font-size:19px;}
+    }
 
     /* ── Form Card ── */
     .lp-form-card{background:#fff;border-radius:10px;padding:36px 32px;box-shadow:0 8px 40px rgba(0,0,0,0.18);}
@@ -137,6 +142,7 @@
       .lp-reviews__grid{grid-template-columns:1fr;}
       .lp-area__list{grid-template-columns:1fr;}
       .lp-stats__inner{grid-template-columns:repeat(2,1fr);}
+      .lp-hero__h1{font-size:42px;}
     }
   </style>
 </head>
