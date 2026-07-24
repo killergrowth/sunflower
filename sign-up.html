@@ -10,6 +10,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+  <!-- Google Ads Account Tag (AW-444433833) - links GA4 to Google Ads for conversion import -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-444433833"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-444433833');
+  </script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Plus Jakarta Sans',sans-serif;color:#121315;background:#fff;-webkit-font-smoothing:antialiased}
@@ -312,6 +320,48 @@ document.querySelectorAll('.dynamic-year').forEach(function(el){el.textContent=n
 const form = document.getElementById('contact-form');
 const success = document.getElementById('form-success');
 
+// ── Conversion Tracking Helpers ──
+function trackFormSubmit() {
+  // GA4 generate_lead
+  if (typeof gtag === 'function') {
+    gtag('event', 'generate_lead', {
+      event_category: 'sign_up_lp',
+      event_label: 'quote_form_submit'
+    });
+    // Google Ads: Sign-Up Page - Quote Form Submission
+    gtag('event', 'conversion', {
+      send_to: 'AW-444433833/XG03CPCe6tUcEKmL9tMB',
+      value: 150,
+      currency: 'USD'
+    });
+  }
+  // dataLayer push for GTM
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'generate_lead', form_location: 'sign_up_lp' });
+}
+
+function trackPhoneClick(href) {
+  if (typeof gtag === 'function') {
+    gtag('event', 'phone_click', {
+      event_category: 'sign_up_lp',
+      event_label: href
+    });
+    // Google Ads: Phone number clicks
+    gtag('event', 'conversion', {
+      send_to: 'AW-444433833/Br_DCN6RguQYEKmL9tMB'
+    });
+  }
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'phone_click', page: 'sign_up_lp' });
+}
+
+// Wire phone click tracking on all tel: links
+document.querySelectorAll('a[href^="tel:"]').forEach(function(el) {
+  el.addEventListener('click', function() {
+    trackPhoneClick(el.getAttribute('href'));
+  });
+});
+
 form.addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = form.querySelector('.lp-form-card__btn');
@@ -325,6 +375,7 @@ form.addEventListener('submit', async function(e) {
     if (json.ok) {
       form.style.display = 'none';
       success.style.display = 'block';
+      trackFormSubmit();
     } else {
       throw new Error(json.error || 'Something went wrong.');
     }
