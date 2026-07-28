@@ -320,7 +320,7 @@ h1, h2, h3, h4, h5 {
   min-height: 680px;
   padding: 80px 24px;
 }
-.hero-content { max-width: 640px; }
+.hero-content { max-width: 860px; }
 .hero-eyebrow {
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
@@ -330,14 +330,27 @@ h1, h2, h3, h4, h5 {
   color: var(--yellow);
   margin-bottom: 20px;
 }
-.hero h1 {
+.hero h1, .hero-services-title {
   font-family: 'Barlow Condensed', 'DM Sans', sans-serif;
-  font-size: clamp(47px, 6.3vw, 86px);
+  font-size: clamp(52px, 8vw, 110px);
   font-weight: 800;
-  line-height: 0.95;
+  line-height: 1;
   letter-spacing: -1px;
   margin-bottom: 24px;
   text-transform: uppercase;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 16px;
+}
+.hero-service-word {
+  display: inline-block;
+}
+.hero-service-sep {
+  color: var(--yellow);
+  font-size: 0.6em;
+  line-height: 1;
+  opacity: 0.6;
 }
 .hero-sub {
   font-size: 18px;
@@ -1129,7 +1142,7 @@ h1, h2, h3, h4, h5 {
   .logo img { height: 48px; }
   .hero { min-height: 520px; }
   .hero-inner { min-height: 520px; padding: 60px 20px; }
-  .hero h1 { font-size: 47px; }
+  .hero h1, .hero-services-title { font-size: clamp(40px, 10vw, 60px); gap: 0 10px; }
   .hero-sub { font-size: 16px; }
   .hero-ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
   .trust-strip-inner { flex-direction: column; }

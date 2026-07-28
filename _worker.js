@@ -149,8 +149,8 @@ function buildSignUpEmail(name, email, phone, address, service, message) {
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f0eb;padding:40px 0;">
     <tr><td align="center"><table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
       <tr><td style="background:#121315;padding:36px 40px;text-align:center;border-radius:8px 8px 0 0;">
-        <div style="color:#FCAF18;font-size:22px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">Sunflower Plumbing &amp; Excavation</div>
-        <div style="color:rgba(255,255,255,0.6);font-size:13px;margin-top:8px;letter-spacing:2px;text-transform:uppercase;">New Service Request</div>
+        <img src="https://sunflowerplumbing.com/images/logo-white-email.png" alt="Sunflower Plumbing &amp; Excavation" style="height:192px;width:auto;display:block;margin:0 auto;">
+        <div style="color:rgba(255,255,255,0.6);font-size:13px;margin-top:12px;letter-spacing:2px;text-transform:uppercase;">New Service Request</div>
       </td></tr>
       <tr><td style="background:#ffffff;padding:36px 40px;">
         <table width="100%" cellpadding="0" cellspacing="0">
@@ -198,16 +198,15 @@ async function handleSignUpSubmit(request, env) {
     const accessToken = await getGmailAccessToken(env.GMAIL_SERVICE_EMAIL, env.GMAIL_PRIVATE_KEY, env.GMAIL_FROM);
     const htmlBody    = buildSignUpEmail(name, email, phone, address, service, message);
     const replyToHeader = email ? `Reply-To: ${name} <${email}>\r\n` : '';
-    const mimeLines = [
+    const mimeHeaders = [
       `From: Sunflower Plumbing <${env.GMAIL_FROM}>`,
       `To: ${env.GMAIL_TO}`,
       `Subject: New Service Request - Sunflower Plumbing`,
       `MIME-Version: 1.0`,
       `Content-Type: text/html; charset=UTF-8`,
-      replyToHeader.trim(),
-      '',
-      htmlBody,
-    ].filter(Boolean).join('\r\n');
+    ];
+    if (replyToHeader.trim()) mimeHeaders.push(replyToHeader.trim());
+    const mimeLines = mimeHeaders.join('\r\n') + '\r\n\r\n' + htmlBody;
 
     const emailBytes = new TextEncoder().encode(mimeLines);
     let emailBinary = '';

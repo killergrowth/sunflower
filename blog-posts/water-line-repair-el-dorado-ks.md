@@ -1,7 +1,7 @@
 ---
 slug: water-line-repair-el-dorado-ks
 title: 'Water Line Repair in El Dorado — Signs, Causes, and What the Repair Involves'
-status: scheduled
+status: published
 publishDate: '2026-07-24'
 scheduledDate: '2026-07-24'
 excerpt: >-

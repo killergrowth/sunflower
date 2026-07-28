@@ -1,7 +1,7 @@
 ---
 slug: residential-plumbing-services-el-dorado-ks
 title: 'Residential Plumbing Services in El Dorado, KS — What Sunflower Handles'
-status: scheduled
+status: published
 publishDate: '2026-07-28'
 scheduledDate: '2026-07-28'
 excerpt: >-
