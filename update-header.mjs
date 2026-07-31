@@ -1,27 +1,14 @@
-<!-- ================= UTILITY BAR ================= -->
-<div class="utility-bar">
-  <div class="utility-inner">
-    <a href="mailto:contact@sunflowerplumbing.com" class="util-item">
-      <span class="util-icon"><i class="fas fa-envelope"></i></span>
-      <span>contact@sunflowerplumbing.com</span>
-    </a>
-    <a href="https://maps.google.com/?q=3910+W+Central+Ave,+El+Dorado,+KS+67042" class="util-item" target="_blank" rel="noopener">
-      <span class="util-icon"><i class="fas fa-map-marker-alt"></i></span>
-      <span>3910 W. Central Ave, El Dorado, KS 67042</span>
-    </a>
-    <div class="util-social">
-      <a href="https://www.facebook.com/sunflowerplumbing" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-    </div>
-  </div>
-</div>
+import { readFileSync, writeFileSync } from 'fs';
 
-<!-- ================= HEADER ================= -->
-<header class="site-header" id="site-header">
-  <div class="header-inner">
-    <a href="/" class="logo">
-      <img src="/images/logo-new.jpg" alt="Sunflower Plumbing" width="160" height="64">
-    </a>
-    <nav class="main-nav" id="main-nav">
+const path = 'C:\\Users\\KillerGrowth\\.openclaw\\workspace\\sites\\sunflower\\_partials\\header.html';
+const buf = readFileSync(path);
+const start = (buf[0]===0xEF&&buf[1]===0xBB&&buf[2]===0xBF)?3:0;
+const original = buf.slice(start).toString('utf8');
+
+// Desktop nav — match the remote version exactly
+const oldDesktopNav = `<nav class="main-nav" id="main-nav">\r\n      <a href="/plumbing/">Plumbing</a>\r\n      <a href="/septic/">Septic</a>\r\n      <a href="/excavation/">Excavation</a>\r\n      <a href="/areas-served/">Areas Served</a>\r\n      <a href="/financing/">Financing</a>\r\n      <a href="/blog/">Blog</a>\r\n      <a href="/about-us/">About</a>\r\n      <a href="/contact-us/">Contact</a>\r\n    </nav>`;
+
+const newDesktopNav = `<nav class="main-nav" id="main-nav">
       <div class="nav-dropdown">
         <a href="/plumbing/" class="nav-parent">Plumbing <i class="fas fa-chevron-down nav-chevron"></i></a>
         <div class="dropdown-menu">
@@ -58,14 +45,12 @@
       <a href="/blog/">Blog</a>
       <a href="/about-us/">About</a>
       <a href="/contact-us/">Contact</a>
-    </nav>
-    <a href="tel:+13163336326" class="book-online">
-      <span>(316) 333-6326</span>
-      <i class="fas fa-phone"></i>
-    </a>
-    <button class="menu-toggle" aria-label="Open menu" id="menu-toggle"><i class="fas fa-bars"></i></button>
-  </div>
-  <!-- Mobile nav drawer -->
+    </nav>`;
+
+// Mobile nav
+const oldMobileNav = `  <!-- Mobile nav drawer -->\r\n  <div class="mobile-nav" id="mobile-nav">\r\n    <a href="/plumbing/">Plumbing</a>\r\n    <a href="/septic/">Septic</a>\r\n    <a href="/excavation/">Excavation</a>\r\n    <a href="/areas-served/">Areas Served</a>\r\n    <a href="/financing/">Financing</a>\r\n    <a href="/blog/">Blog</a>\r\n    <a href="/about-us/">About</a>\r\n    <a href="/contact-us/">Contact</a>\r\n    <a href="tel:+13163336326" class="mobile-cta"><i class="fas fa-phone"></i> (316) 333-6326</a>\r\n  </div>`;
+
+const newMobileNav = `  <!-- Mobile nav drawer -->
   <div class="mobile-nav" id="mobile-nav">
     <div class="mobile-dropdown">
       <button class="mobile-dropdown-toggle" aria-expanded="false">Plumbing <i class="fas fa-chevron-down"></i></button>
@@ -107,5 +92,44 @@
     <a href="/about-us/">About</a>
     <a href="/contact-us/">Contact</a>
     <a href="tel:+13163336326" class="mobile-cta"><i class="fas fa-phone"></i> (316) 333-6326</a>
-  </div>
-</header>
+  </div>`;
+
+let updated = original;
+
+if (updated.includes(oldDesktopNav)) {
+  updated = updated.replace(oldDesktopNav, newDesktopNav);
+  console.log('Desktop nav replaced OK');
+} else {
+  // Try LF only version
+  const oldDesktopNavLF = oldDesktopNav.replace(/\r\n/g, '\n');
+  if (updated.includes(oldDesktopNavLF)) {
+    updated = updated.replace(oldDesktopNavLF, newDesktopNav);
+    console.log('Desktop nav replaced OK (LF)');
+  } else {
+    console.log('ERROR: desktop nav string not found');
+    // Debug — show what we have
+    const idx = updated.indexOf('<nav class="main-nav"');
+    console.log('Nav section found at:', idx);
+    if (idx > -1) console.log('Raw nav content:', JSON.stringify(updated.substring(idx, idx+400)));
+    process.exit(1);
+  }
+}
+
+if (updated.includes(oldMobileNav)) {
+  updated = updated.replace(oldMobileNav, newMobileNav);
+  console.log('Mobile nav replaced OK');
+} else {
+  const oldMobileNavLF = oldMobileNav.replace(/\r\n/g, '\n');
+  if (updated.includes(oldMobileNavLF)) {
+    updated = updated.replace(oldMobileNavLF, newMobileNav);
+    console.log('Mobile nav replaced OK (LF)');
+  } else {
+    console.log('ERROR: mobile nav string not found');
+    const idx = updated.indexOf('<!-- Mobile nav drawer -->');
+    if (idx > -1) console.log('Raw mobile nav:', JSON.stringify(updated.substring(idx, idx+400)));
+    process.exit(1);
+  }
+}
+
+writeFileSync(path, updated, 'utf8');
+console.log('header.html written successfully');

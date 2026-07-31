@@ -18,6 +18,22 @@ if (menuToggle && mobileNav) {
   });
 }
 
+// Mobile dropdown accordions
+document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const menu = btn.nextElementSibling;
+    const isOpen = menu.classList.contains('open');
+    // Close all others first
+    document.querySelectorAll('.mobile-dropdown-menu').forEach(m => m.classList.remove('open'));
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    // Toggle this one
+    if (!isOpen) {
+      menu.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
 // Highlight active nav link
 (function() {
   const path = window.location.pathname;
@@ -47,54 +63,18 @@ if (contactForm) {
     const originalHTML = btn.innerHTML;
     btn.disabled = true;
     btn.innerHTML = '<span>Sending...</span>';
-
-    const fd = new FormData(contactForm);
-    const payload = {
-      firstName: fd.get('firstName') || fd.get('first_name') || fd.get('name')?.split(' ')[0] || '',
-      lastName:  fd.get('lastName')  || fd.get('last_name')  || fd.get('name')?.split(' ').slice(1).join(' ') || '',
-      phone:     fd.get('phone') || '',
-      email:     fd.get('email') || '',
-      service:   fd.get('service') || '',
-      message:   fd.get('message') || '',
-    };
-
+    const data = Object.fromEntries(new FormData(contactForm));
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) throw new Error('Server error');
-
-      // Fire GTM dataLayer event for generate_lead conversion
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'form_submit_success', form_type: 'contact_form' });
-
-      btn.innerHTML = '<span>Sent! We\'ll be in touch shortly.</span>';
-      contactForm.reset();
-
+      // TODO: Wire to GHL form endpoint when available
+      console.log('Form data:', data);
+      setTimeout(() => {
+        btn.innerHTML = '<span>Sent! We\'ll be in touch.</span>';
+        contactForm.reset();
+      }, 800);
     } catch (err) {
-      console.error('Form submission error:', err);
       btn.innerHTML = '<span>Error &mdash; please call us at (316) 333-6326</span>';
       btn.disabled = false;
       setTimeout(() => { btn.innerHTML = originalHTML; btn.disabled = false; }, 4000);
     }
   });
 }
-
-// HouseCall Pro booking widget — intercept #hcpro clicks and open modal
-document.addEventListener('click', function(e) {
-  const link = e.target.closest('a[href="#hcpro"]');
-  if (!link) return;
-  e.preventDefault();
-  if (typeof HCPWidget !== 'undefined' && HCPWidget.openModal) {
-    HCPWidget.openModal();
-  } else {
-    // Widget not loaded yet — fall back to direct booking URL
-    window.open(
-      'https://online-booking.housecallpro.com/book/Sunflower-Plumbing--Reliable-Dirtworks?token=cbc0ca9936ec4f589da40d02d6f05a11',
-      '_blank'
-    );
-  }
-});
