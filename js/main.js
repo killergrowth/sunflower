@@ -70,6 +70,7 @@ if (contactForm) {
       // Fire GTM dataLayer event for generate_lead conversion
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'form_submit_success', form_type: 'contact_form' });
+      if (typeof window.fathom !== 'undefined') { window.fathom.trackEvent('form submit - contact_form'); }
 
       btn.innerHTML = '<span>Sent! We\'ll be in touch shortly.</span>';
       contactForm.reset();

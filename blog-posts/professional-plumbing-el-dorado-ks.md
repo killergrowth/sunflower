@@ -1,7 +1,7 @@
 ---
 slug: professional-plumbing-el-dorado-ks
 title: 'What Professional Plumbing Actually Means in Butler County, Kansas'
-status: scheduled
+status: published
 publishDate: '2026-07-31'
 scheduledDate: '2026-07-31'
 excerpt: >-
