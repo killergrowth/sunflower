@@ -218,15 +218,27 @@ h1, h2, h3, h4, h5 {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 12px);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
+  padding-top: 12px;
+  background: transparent;
+  min-width: 230px;
+  z-index: 200;
+}
+.dropdown-menu::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: var(--white);
   border: 1px solid var(--divider);
   border-top: 3px solid var(--yellow);
-  min-width: 230px;
-  z-index: 200;
   box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  z-index: -1;
 }
 .nav-dropdown:hover .dropdown-menu {
   display: block;
