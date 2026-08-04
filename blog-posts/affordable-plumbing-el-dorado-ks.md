@@ -3,7 +3,7 @@ slug: affordable-plumbing-el-dorado-ks
 title: >-
   Affordable Plumbing in El Dorado: What Fair Pricing Looks Like in Butler
   County
-status: scheduled
+status: published
 publishDate: '2026-08-04'
 scheduledDate: '2026-08-04'
 excerpt: >-
