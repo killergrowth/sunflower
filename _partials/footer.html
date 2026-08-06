@@ -106,3 +106,16 @@
     document.body.appendChild(s);
   })();
 </script>
+
+<!-- Booking Click Tracking -->
+<script>
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('a[href="#hcpro"], a[onclick*="HCPWidget"]');
+    if (!el) return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'booking_click' });
+    if (typeof gtag === 'function') {
+      gtag('event', 'booking_click', { event_category: 'engagement', event_label: 'HCP Book Online' });
+    }
+  });
+</script>
