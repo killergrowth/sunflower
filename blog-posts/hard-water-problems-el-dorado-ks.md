@@ -3,7 +3,7 @@ slug: hard-water-problems-el-dorado-ks
 title: >-
   Hard Water Problems in El Dorado — What Butler County Water Does to Your
   Plumbing
-status: scheduled
+status: published
 publishDate: '2026-08-21'
 scheduledDate: '2026-08-21'
 excerpt: >-

@@ -3,7 +3,7 @@ slug: what-not-to-flush-el-dorado-ks
 title: >-
   What Not to Flush in El Dorado — What Wrecks Pipes and Septic Systems in
   Butler County
-status: scheduled
+status: published
 publishDate: '2026-08-14'
 scheduledDate: '2026-08-14'
 excerpt: >-

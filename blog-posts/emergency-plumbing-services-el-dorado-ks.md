@@ -1,7 +1,7 @@
 ---
 slug: emergency-plumbing-services-el-dorado-ks
 title: Emergency Plumbing Services in El Dorado — What Counts and What Can Wait
-status: scheduled
+status: published
 publishDate: '2026-08-07'
 scheduledDate: '2026-08-07'
 excerpt: >-

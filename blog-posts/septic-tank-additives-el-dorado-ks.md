@@ -1,7 +1,7 @@
 ---
 slug: septic-tank-additives-el-dorado-ks
 title: Septic Tank Additives — Do They Work or Are They a Waste of Money?
-status: scheduled
+status: published
 publishDate: '2026-08-11'
 scheduledDate: '2026-08-11'
 excerpt: >-

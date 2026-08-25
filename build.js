@@ -100,6 +100,7 @@ const pages = [
   ['privacy-policy/index.html',       'privacy-policy/index.html'],
   ['terms-of-use/index.html',         'terms-of-use/index.html'],
   ['plumbing-tips/index.html',        'plumbing-tips/index.html'],
+  ['reliable.html',                   'reliable/index.html'],
   ['404.html',                       '404.html']];
 
 for (const [src, dest] of pages) {

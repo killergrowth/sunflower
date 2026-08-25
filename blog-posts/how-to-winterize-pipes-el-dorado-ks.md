@@ -3,7 +3,7 @@ slug: how-to-winterize-pipes-el-dorado-ks
 title: >-
   How to Winterize Pipes in El Dorado — What Butler County Homeowners Need to Do
   Before a Cold Snap
-status: scheduled
+status: published
 publishDate: '2026-08-18'
 scheduledDate: '2026-08-18'
 excerpt: >-

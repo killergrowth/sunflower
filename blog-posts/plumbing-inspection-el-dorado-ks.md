@@ -1,7 +1,7 @@
 ---
 slug: plumbing-inspection-el-dorado-ks
 title: Plumbing Inspection in El Dorado — When to Get One and What It Covers
-status: scheduled
+status: published
 publishDate: '2026-08-25'
 scheduledDate: '2026-08-25'
 excerpt: >-
