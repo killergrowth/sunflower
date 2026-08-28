@@ -3,7 +3,7 @@ slug: plumbing-tips-for-homeowners-el-dorado-ks
 title: >-
   Plumbing Tips for El Dorado Homeowners — 10 Things You Should Know Before You
   Need a Plumber
-status: scheduled
+status: published
 publishDate: '2026-08-28'
 scheduledDate: '2026-08-28'
 excerpt: >-
