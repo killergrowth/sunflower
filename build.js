@@ -101,6 +101,7 @@ const pages = [
   ['terms-of-use/index.html',         'terms-of-use/index.html'],
   ['plumbing-tips/index.html',        'plumbing-tips/index.html'],
   ['reliable.html',                   'reliable/index.html'],
+  ['upload/index.html',               'upload/index.html'],
   ['404.html',                       '404.html']];
 
 for (const [src, dest] of pages) {
