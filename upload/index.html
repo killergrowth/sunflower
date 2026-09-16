@@ -336,7 +336,7 @@
 
     <div class="upload-card">
       <h1><i class="fas fa-camera" style="color:var(--yellow,#FCAF18);margin-right:10px;"></i>Photo Upload</h1>
-      <p class="subtitle">Upload job site photos for Sunflower Plumbing. Select all services that apply, add a quick description, and attach your photos.</p>
+      <p class="subtitle">Select a service, pick your photos, hit upload — done. Description is optional.</p>
 
       <form id="upload-form" novalidate>
 
@@ -367,9 +367,9 @@
 
         <!-- Description with voice-to-text -->
         <div class="form-group">
-          <label for="description">Description</label>
+          <label for="description">Description <span style="color:#aaa;font-weight:400;font-size:11px;text-transform:none;letter-spacing:0;">(optional)</span></label>
           <div class="desc-wrapper" id="desc-wrapper">
-            <textarea id="description" name="description" placeholder="Describe what the photo shows — location, issue, before/after, etc. Tap the mic to use voice." rows="4"></textarea>
+            <textarea id="description" name="description" placeholder="Optional — location, before/after, what was wrong, etc. Tap the mic to dictate." rows="3"></textarea>
             <button type="button" class="voice-btn" id="voice-btn" title="Tap to use voice-to-text" aria-label="Start voice input">
               <i class="fas fa-microphone" id="mic-icon"></i>
             </button>
