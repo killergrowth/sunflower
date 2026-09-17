@@ -1,5 +1,5 @@
 /**
- * Cloudflare Pages Function -- /upload
+ * Cloudflare Pages Function -- /upload v2
  * Sunflower Plumbing & Excavation
  * Handles multipart photo uploads → Google Drive (by service folder) + Gmail notification
  *
@@ -10,28 +10,30 @@
  *   GMAIL_TO             — notification recipient
  */
 
-// ── Drive folder map (Sunflower Plumbing/Photos/<service>) ────────────────────
-// Folder IDs created 2026-09-16 under tylerbrickley@killergrowth.com
+// ── Drive folder map (KG Clients Shared Drive > Sunflower Plumbing > Photos > <service>) ──
+// Folder IDs created 2026-09-16 in KG Clients Shared Drive (driveId: 0AChAr9NNNH3kUk9PVA)
+const WORKER_VERSION = '20260917143639'; const CACHE_BUST = '202609171436392026091714363920260917143639';
+const SHARED_DRIVE_ID = '0AChAr9NNNH3kUk9PVA';
 const DRIVE_FOLDERS = {
-  'Drain Cleaning':                '1XneTKDRjVLmmdK0f7Y6qtvyMxEKSqffE',
-  'Fixture Replacement':           '1oyXlVrMTWvXro0UxFdx5wM0NGvfUGyZg',
-  'Gas Line Services':             '112E4DpkTSyLRQmjCjgCFnqzKwJEr0zzn',
-  'Kitchen & Bathroom Plumbing':   '13byirLatMo9R0RMG-4px1M0-wU3u8a4z',
-  'Leak Detection':                '1cjm8dfLcRV5Kci7VqtLhAoamYE0FpSg9',
-  'Sewer Line Repair':             '1ZQ2e8KRRLF5WoLaFnRChBQcgq3TBmZ3y',
-  'Toilet & Faucet Repair':        '1n-qAMaAq4avR2ekckk8PMBjBXt6PeqpH',
-  'Water Heater Repair':           '1D6zxXjqJuDjymKE7JQBbvT15IdbgzuOs',
-  'Water Softener Installation':   '1CpolNAv2M_pFtiJZzoc1xk5-MEOozT0d',
-  'Lateral Field Installation':    '1CtCjLgqSfnkCGo-3_UMnUepJCDHQgg0s',
-  'Backfill & Grading':            '1JZNN_PJeo8dqDVLyvFy_vs_TtQykv7j5',
-  'Emergency Excavation':          '19zQjRqGJGNlFnPcD_UssIGKIDseP0Pw9',
-  'Septic System Excavation':      '1b-kDLWCz121pW-SAc2r3dVN2Fyzaox-x',
-  'Sewer & Water Line Excavation': '1Wg6TzG4U48Z0BfbAVcz5GQl851VVzumA',
-  'Site Preparation':              '15ycnHIvqoLStDL6GGWrSjKPt9JlGWbPZ',
-  'Trenching':                     '1RKN1oD7-uaJn026hfLLhtlFn_RB2_xfb',
-  'Other':                         '1yXdWSyLqMiIj6yhKp19G7VN4ogriZUsl',
+  'Drain Cleaning':                '1YudaaB80M8PJoSNamRFQGmlh2zrN0tks',
+  'Fixture Replacement':           '1p4XsyVtnjFcj-e3Gn-2W-nm-_4mF-15u',
+  'Gas Line Services':             '1CcciHGzKvYgm1YQcWkTsrqmxZT3n6rZe',
+  'Kitchen & Bathroom Plumbing':   '1IL_R8VlrSSQQNvlIumaXCDcKX8r-DcNZ',
+  'Leak Detection':                '1V7wfujmz-KDQmsEph3GtMbCsAI7Qrh4q',
+  'Sewer Line Repair':             '14DdiU-V4d09pC0TcHsVr_JTF-b11gG8A',
+  'Toilet & Faucet Repair':        '1ajVRen5a5O5lKyzVME9B0b3cGg2AZSCO',
+  'Water Heater Repair':           '15LwvIV9FR-ljuuWTzDhBGGjb9XueqOXG',
+  'Water Softener Installation':   '1ga3Ovh69qD03MuvR2H5WLx4PXePMy5pJ',
+  'Lateral Field Installation':    '1tX3_y3aV8d2jI-1gqBlYapf2caMEbhjL',
+  'Backfill & Grading':            '1xCytHN43r8f8pTUwmItzZkeHsBNZAoB-',
+  'Emergency Excavation':          '1pxR0qMUVbPZoxz59MANiSH31ExFHHlFm',
+  'Septic System Excavation':      '1TejmBV4DE-ctLS7T2UaYlm9h_-2rWHT-',
+  'Sewer & Water Line Excavation': '1vB4wTB6S21-vguG1hc8JCVvF0V-gr3Pc',
+  'Site Preparation':              '1gfkxorgZDHXV5nv9BHnoxDS7zdLjwU7d',
+  'Trenching':                     '18eiEgTlx07ROnGz1oMhoBxDfl95q_Uqs',
+  'Other':                         '1M7QEay-qFKnXcHP5zpyaQpoH57rCqVBq',
 };
-const FALLBACK_FOLDER = '1w90ZN_pKuYS5PIA1fDNEzTxMG_kVXrz_'; // Photos root
+const FALLBACK_FOLDER = '1M1dd9Zssg0Fz16uSA-fCRomdBbRm-QES'; // Photos root in Shared Drive
 
 // ── JWT / token helpers ───────────────────────────────────────────────────────
 
@@ -50,8 +52,12 @@ function bufToB64url(buf) {
 }
 
 async function importPrivateKey(pem) {
+  // Handle both literal \n (escaped) and real newlines
   const normalized = pem.replace(/\\n/g, '\n');
-  const b64 = normalized.replace(/-----[A-Z ]+-----/g, '').replace(/\s+/g, '');
+  const b64 = normalized
+    .replace(/-----BEGIN PRIVATE KEY-----/g, '')
+    .replace(/-----END PRIVATE KEY-----/g, '')
+    .replace(/\s+/g, '');
   const decoded = atob(b64);
   const buf = new Uint8Array(decoded.length);
   for (let i = 0; i < decoded.length; i++) buf[i] = decoded.charCodeAt(i);
@@ -84,6 +90,7 @@ async function getAccessToken(serviceEmail, privateKeyPem, impersonate, scope) {
 
 async function uploadToDrive(token, fileName, mimeType, bytes, folderId) {
   const boundary = '-------314159265358979323846';
+  // supportsAllDrives=true required for Shared Drive uploads
   const meta = JSON.stringify({ name: fileName, parents: [folderId] });
 
   // Build multipart body
@@ -103,7 +110,7 @@ async function uploadToDrive(token, fileName, mimeType, bytes, folderId) {
   body.set(closing, metaPart.length + filePart.length + bytes.byteLength);
 
   const res = await fetch(
-    'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,webViewLink',
+    'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true&fields=id,name,webViewLink',
     {
       method: 'POST',
       headers: {
@@ -230,15 +237,24 @@ export async function onRequestPost({ request, env }) {
       return new Response(JSON.stringify({ ok: false, error: 'No photo file received.' }), { status: 400, headers: CORS });
     }
 
-    const rawName     = photo.name || 'photo.jpg';
-    const mimeType    = photo.type || 'image/jpeg';
+    const rawName     = (photo.name && typeof photo.name === 'string') ? photo.name : 'photo.jpg';
+    const mimeType    = (photo.type && typeof photo.type === 'string' && photo.type) ? photo.type : 'image/jpeg';
     const arrayBuffer = await photo.arrayBuffer();
 
     // Stamp filename: YYYYMMDD_HHMMSS_techname_originalname
     const now    = new Date();
     const stamp  = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}${String(now.getSeconds()).padStart(2,'0')}`;
     const safeTech = techName.replace(/[^a-zA-Z0-9]/g, '-').slice(0, 20);
-    const fileName = `${stamp}_${safeTech}_${rawName.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+    const safeRaw  = String(rawName).replace(/[^a-zA-Z0-9._-]/g, '_');
+    console.log('DEBUG description:', JSON.stringify(description), 'length:', description.length);
+    const safeDesc = description
+      ? description.replace(/[^a-zA-Z0-9 ]/g, '').trim().replace(/\s+/g, '-').slice(0, 60)
+      : '';
+    console.log('DEBUG safeDesc:', JSON.stringify(safeDesc));
+    const fileName = safeDesc
+      ? `${stamp}_${safeTech}_${safeDesc}_${safeRaw}`
+      : `${stamp}_${safeTech}_${safeRaw}`;
+    console.log('DEBUG fileName:', fileName);
 
     // Get Drive token (Drive scope)
     const driveToken = await getAccessToken(
@@ -272,8 +288,10 @@ export async function onRequestPost({ request, env }) {
     return new Response(JSON.stringify({ ok: true, files: driveResults.map(r => r.id) }), { headers: CORS });
 
   } catch (err) {
-    console.error('upload error:', err.message);
-    return new Response(JSON.stringify({ ok: false, error: err.message.slice(0, 300) }), { status: 500, headers: CORS });
+    const msg = (err && err.message) ? err.message : String(err);
+    const stack = (err && err.stack) ? err.stack : '';
+    console.error('upload error:', msg, stack);
+    return new Response(JSON.stringify({ ok: false, error: msg.slice(0, 500) }), { status: 500, headers: CORS });
   }
 }
 
@@ -287,3 +305,6 @@ export async function onRequestOptions() {
     },
   });
 }
+
+
+

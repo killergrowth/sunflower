@@ -331,3 +331,18 @@ try {
 } catch (err) {
   console.error('[Sign-Up LP] FAILED:', err.message);
 }
+
+// Always copy functions/ into dist/functions/ so wrangler deploys latest Worker code
+try {
+  const fnSrc = path.join(ROOT, 'functions');
+  const fnDst = path.join(DIST, 'functions');
+  if (fs.existsSync(fnSrc)) {
+    fs.mkdirSync(fnDst, { recursive: true });
+    for (const f of fs.readdirSync(fnSrc)) {
+      fs.copyFileSync(path.join(fnSrc, f), path.join(fnDst, f));
+    }
+    console.log('[Functions] Copied functions/ to dist/functions/');
+  }
+} catch (err) {
+  console.error('[Functions] FAILED:', err.message);
+}

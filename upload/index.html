@@ -11,6 +11,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="/css/styles.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -76,43 +77,6 @@
       resize: vertical;
     }
 
-    /* Multi-select styling */
-    .service-checkboxes {
-      border: 1.5px solid #ddd;
-      border-radius: 6px;
-      background: #fafafa;
-      padding: 10px 4px;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    .service-checkboxes:focus-within {
-      border-color: var(--yellow, #FCAF18);
-      background: #fff;
-    }
-    .service-check-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .service-check-item:hover {
-      background: #f4f0eb;
-    }
-    .service-check-item input[type="checkbox"] {
-      width: 17px;
-      height: 17px;
-      accent-color: var(--yellow, #FCAF18);
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .service-check-item span {
-      font-size: 15px;
-      color: var(--black, #121315);
-      user-select: none;
-    }
     .select-hint {
       font-size: 12px;
       color: #888;
@@ -340,29 +304,29 @@
 
       <form id="upload-form" novalidate>
 
-        <!-- Service dropdown (multi-select via checkboxes) -->
+        <!-- Service single-select dropdown -->
         <div class="form-group">
-          <label for="service-list">Service <span style="color:#e53935;">*</span></label>
-          <div class="service-checkboxes" id="service-list" role="group" aria-label="Select services">
-            <label class="service-check-item"><input type="checkbox" name="service" value="Drain Cleaning"><span>Drain Cleaning</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Fixture Replacement"><span>Fixture Replacement</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Gas Line Services"><span>Gas Line Services</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Kitchen & Bathroom Plumbing"><span>Kitchen & Bathroom Plumbing</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Leak Detection"><span>Leak Detection</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Sewer Line Repair"><span>Sewer Line Repair</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Toilet & Faucet Repair"><span>Toilet & Faucet Repair</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Water Heater Repair"><span>Water Heater Repair</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Water Softener Installation"><span>Water Softener Installation</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Lateral Field Installation"><span>Lateral Field Installation</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Backfill & Grading"><span>Backfill & Grading</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Emergency Excavation"><span>Emergency Excavation</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Septic System Excavation"><span>Septic System Excavation</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Sewer & Water Line Excavation"><span>Sewer & Water Line Excavation</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Site Preparation"><span>Site Preparation</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Trenching"><span>Trenching</span></label>
-            <label class="service-check-item"><input type="checkbox" name="service" value="Other"><span>Other</span></label>
-          </div>
-          <p class="select-hint">Select all that apply.</p>
+          <label for="service">Service <span style="color:#e53935;">*</span></label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected>— Pick a service —</option>
+            <option value="Drain Cleaning">Drain Cleaning</option>
+            <option value="Fixture Replacement">Fixture Replacement</option>
+            <option value="Gas Line Services">Gas Line Services</option>
+            <option value="Kitchen &amp; Bathroom Plumbing">Kitchen &amp; Bathroom Plumbing</option>
+            <option value="Leak Detection">Leak Detection</option>
+            <option value="Sewer Line Repair">Sewer Line Repair</option>
+            <option value="Toilet &amp; Faucet Repair">Toilet &amp; Faucet Repair</option>
+            <option value="Water Heater Repair">Water Heater Repair</option>
+            <option value="Water Softener Installation">Water Softener Installation</option>
+            <option value="Lateral Field Installation">Lateral Field Installation</option>
+            <option value="Backfill &amp; Grading">Backfill &amp; Grading</option>
+            <option value="Emergency Excavation">Emergency Excavation</option>
+            <option value="Septic System Excavation">Septic System Excavation</option>
+            <option value="Sewer &amp; Water Line Excavation">Sewer &amp; Water Line Excavation</option>
+            <option value="Site Preparation">Site Preparation</option>
+            <option value="Trenching">Trenching</option>
+            <option value="Other">Other</option>
+          </select>
         </div>
 
         <!-- Description with voice-to-text -->
@@ -380,7 +344,7 @@
         <!-- Submitter name -->
         <div class="form-group">
           <label for="tech-name">Your Name <span style="color:#e53935;">*</span></label>
-          <input type="text" id="tech-name" name="tech_name" placeholder="Tech name or initials"
+          <input type="text" id="tech-name" name="tech_name" placeholder="Your full name"
             style="width:100%;padding:12px 14px;border:1.5px solid #ddd;border-radius:6px;font-size:15px;font-family:inherit;color:#121315;background:#fafafa;box-sizing:border-box;">
         </div>
 
@@ -388,10 +352,10 @@
         <div class="form-group">
           <label>Photos <span style="color:#e53935;">*</span></label>
           <div class="drop-zone" id="drop-zone">
-            <input type="file" id="file-input" name="photos" accept="image/*" multiple capture="environment">
+            <input type="file" id="file-input" name="photos" accept="image/*,image/heic,image/heif,video/*" multiple>
             <div class="drop-icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <span class="drop-label">Tap to select photos</span>
-            <span class="drop-sub">or drag & drop here &bull; JPG, PNG, HEIC</span>
+            <span class="drop-sub">or drag &amp; drop here &bull; Photos, Videos, HEIC</span>
           </div>
           <div id="preview-list"></div>
         </div>
@@ -428,6 +392,23 @@
 <script>
 (function() {
   'use strict';
+
+  // ── Helpers ────────────────────────────────────────────────────
+  function safeName(file) {
+    return (file && typeof file.name === 'string' && file.name) ? file.name : 'photo';
+  }
+  function isHeicFile(file) {
+    var n = safeName(file).toLowerCase();
+    var t = (file && file.type) ? file.type.toLowerCase() : '';
+    return /\.(heic|heif)$/.test(n) || t === 'image/heic' || t === 'image/heif';
+  }
+  function isAccepted(file) {
+    if (!file) return false;
+    var t = (file.type || '');
+    var n = safeName(file).toLowerCase();
+    return t.startsWith('image/') || t.startsWith('video/') || isHeicFile(file)
+      || /\.(jpe?g|png|gif|webp|bmp|tiff?|mp4|mov|avi|mkv|webm|m4v)$/.test(n);
+  }
 
   // ── Voice to text ──────────────────────────────────────────────
   const voiceBtn  = document.getElementById('voice-btn');
@@ -499,10 +480,21 @@
   const previewList = document.getElementById('preview-list');
   let selectedFiles = [];
 
+  function isAccepted(file) {
+    if (!file) return false;
+    const type = file.type || '';
+    const name = (file.name || '').toLowerCase();
+    return type.startsWith('image/') || type.startsWith('video/')
+      || /\.(heic|heif|jpe?g|png|gif|webp|bmp|tiff?|mp4|mov|avi|mkv|webm|m4v)$/.test(name);
+  }
+
   function addFiles(fileList) {
-    for (const f of fileList) {
-      if (!f.type.startsWith('image/')) continue;
-      if (selectedFiles.some(x => x.name === f.name && x.size === f.size)) continue;
+    for (var i = 0; i < fileList.length; i++) {
+      var f = fileList[i];
+      if (!isAccepted(f)) continue;
+      var fname = safeName(f);
+      var fsize = f.size || 0;
+      if (selectedFiles.some(function(x) { return safeName(x) === fname && (x.size||0) === fsize; })) continue;
       selectedFiles.push(f);
       renderThumb(f, selectedFiles.length - 1);
     }
@@ -513,12 +505,26 @@
     wrap.className = 'thumb-wrap';
     wrap.dataset.idx = idx;
 
-    const img = document.createElement('img');
-    img.className = 'preview-thumb';
-    img.alt = file.name;
-    const url = URL.createObjectURL(file);
-    img.src = url;
-    img.onload = () => URL.revokeObjectURL(url);
+    var isVideo = (file && file.type) ? file.type.startsWith('video/') : false;
+    var isHeic  = isHeicFile(file);
+    var mediaEl;
+    if (isHeic) {
+      mediaEl = document.createElement('div');
+      mediaEl.className = 'preview-thumb';
+      mediaEl.style.cssText = 'display:flex;align-items:center;justify-content:center;background:#f0f0f0;font-size:11px;color:#666;text-align:center;padding:4px;box-sizing:border-box;';
+      mediaEl.textContent = safeName(file).replace(/\.[^.]+$/, '').slice(-8) || 'HEIC';
+    } else {
+      mediaEl = document.createElement(isVideo ? 'video' : 'img');
+      mediaEl.className = 'preview-thumb';
+      mediaEl.alt = safeName(file);
+      if (isVideo) { mediaEl.muted = true; mediaEl.preload = 'metadata'; }
+      try {
+        var url = URL.createObjectURL(file);
+        mediaEl.src = url;
+        mediaEl.onload = function() { URL.revokeObjectURL(url); };
+        if (isVideo) mediaEl.onloadedmetadata = function() { URL.revokeObjectURL(url); };
+      } catch(e) { /* can't preview */ }
+    }
 
     const rm = document.createElement('button');
     rm.className = 'thumb-remove';
@@ -530,7 +536,7 @@
       refreshPreviews();
     };
 
-    wrap.appendChild(img);
+    wrap.appendChild(mediaEl);
     wrap.appendChild(rm);
     previewList.appendChild(wrap);
   }
@@ -573,29 +579,33 @@
     progressLb.textContent = label;
   }
 
-  function logItem(name, state, message) {
-    let item = document.querySelector(`.log-item[data-name="${CSS.escape(name)}"]`);
+  function logItem(label, state, message) {
+    var safeLabel = (label != null && label !== '') ? String(label) : 'file';
+    var escaped = safeLabel.replace(/[\\"']/g, '_');
+    var item = uploadLog.querySelector('[data-log="' + escaped + '"]');
     if (!item) {
       item = document.createElement('div');
       item.className = 'log-item';
-      item.dataset.name = name;
+      item.setAttribute('data-log', escaped);
       uploadLog.appendChild(item);
     }
     item.className = 'log-item ' + state;
-    const icon = state === 'ok' ? 'fa-check-circle' : state === 'err' ? 'fa-times-circle' : 'fa-spinner fa-spin';
-    item.innerHTML = `<i class="fas ${icon} log-icon"></i><span>${name}: ${message}</span>`;
+    var icon = state === 'ok' ? 'fa-check-circle' : state === 'err' ? 'fa-times-circle' : 'fa-spinner fa-spin';
+    var safeMsg = String(message || '').replace(/</g, '&lt;');
+    var safeDisp = safeLabel.replace(/</g, '&lt;');
+    item.innerHTML = '<i class="fas ' + icon + ' log-icon"></i><span>' + safeDisp + ': ' + safeMsg + '</span>';
   }
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
     // Validate
-    const services = [...document.querySelectorAll('input[name="service"]:checked')].map(c => c.value);
+    const service = document.getElementById('service').value.trim();
     const description = descEl.value.trim();
     const techName = document.getElementById('tech-name').value.trim();
 
-    if (services.length === 0) {
-      showResult('error', 'Please select at least one service.');
+    if (!service) {
+      showResult('error', 'Please select a service.');
       return;
     }
     if (!techName) {
@@ -619,26 +629,34 @@
     let done = 0;
     let errors = 0;
 
-    for (const file of selectedFiles) {
-      logItem(file.name, 'uploading', 'uploading…');
+    for (var fi = 0; fi < selectedFiles.length; fi++) {
+      var file = selectedFiles[fi];
+      var displayName = safeName(file);
+      logItem(displayName, 'uploading', 'uploading…');
       try {
-        const fd = new FormData();
-        fd.append('service', services.join(', '));
+        var uploadFile = file;
+        var uploadName = /\./.test(displayName) ? displayName : displayName + '.jpg';
+
+        // HEIC files upload as-is (Drive stores them fine; techs should use Most Compatible mode)
+
+        logItem(displayName, 'uploading', 'uploading…');
+        var fd = new FormData();
+        fd.append('service', service);
         fd.append('description', description);
         fd.append('tech_name', techName);
-        fd.append('photo', file, file.name);
+        fd.append('photo', uploadFile, uploadName);
 
-        const res = await fetch('/upload', { method: 'POST', body: fd });
-        const data = await res.json().catch(() => ({}));
+        var res = await fetch('/upload', { method: 'POST', body: fd });
+        var data = await res.json().catch(function() { return {}; });
 
         if (res.ok && data.ok) {
-          logItem(file.name, 'ok', 'uploaded ✓');
+          logItem(displayName, 'ok', 'uploaded ✓');
         } else {
-          logItem(file.name, 'err', data.error || 'upload failed');
+          logItem(displayName, 'err', data.error || 'upload failed');
           errors++;
         }
       } catch (err) {
-        logItem(file.name, 'err', err.message || 'network error');
+        logItem(displayName, 'err', (err && err.message) ? err.message : 'network error');
         errors++;
       }
       done++;
